@@ -1,0 +1,272 @@
+{
+  "Common": {
+    "title": "On-chain Tic-Tac-Toe",
+    "description": "A tic-tac-toe game that runs entirely in a smart contract. Both players stake the same amount and the winner takes the pot. Testnets only.",
+    "home": "Home"
+  },
+  "HomePage": {
+    "hero": {
+      "cta": "Play",
+      "secondary": "How it works"
+    },
+    "points": {
+      "title": "What this app does",
+      "escrow": {
+        "title": "The contract holds the stakes",
+        "body": "Both players send the same amount when they join, and the contract escrows it. There is no path for an operator to walk away with the funds."
+      },
+      "judge": {
+        "title": "The chain decides the winner",
+        "body": "The board and the win check live inside the contract. There is no server and no database."
+      },
+      "timeout": {
+        "title": "Stalling cannot trap your money",
+        "body": "If the player to move runs out the clock, the opponent claims the pot by forfeit. Funds are never stuck."
+      }
+    }
+  },
+  "Header": {
+    "en": "English",
+    "ja": "日本語",
+    "play": "Play",
+    "about": "How it works",
+    "solo": "Play the contract",
+    "history": "History"
+  },
+  "Footer": {
+    "copyright": "© {year} On-chain Tic-Tac-Toe",
+    "quickLinks": {
+      "title": "Pages",
+      "about": "How it works",
+      "play": "Play",
+      "solo": "Play the contract",
+      "history": "History"
+    },
+    "resources": {
+      "title": "Source",
+      "contract": "TicTacToe.sol",
+      "repository": "Repository"
+    },
+    "links": {
+      "title": "Built with"
+    },
+    "testnetNotice": "Testnets only. The ETH used here has no monetary value."
+  },
+  "Play": {
+    "title": "Lobby",
+    "description": "Create a game or join an open one. Stakes are escrowed by the contract and claimed by the winner.",
+    "connectPrompt": "Connect a wallet to create or join a game.",
+    "wallet": {
+      "connect": "Connect wallet",
+      "connecting": "Connecting…",
+      "disconnect": "Disconnect",
+      "network": "Network",
+      "unsupportedNetwork": "Unsupported network",
+      "noWallet": "No browser wallet found. Install MetaMask or a similar extension.",
+      "noContract": "No contract is configured for this network. Check the addresses in .env.local.",
+      "wrongNetworkTitle": "Your wallet is on a different network",
+      "wrongNetworkBody": "This app runs on testnets only. The button below switches networks, registering the network with your wallet first if it has never seen it. MetaMask will ask you to confirm.",
+      "switchTo": "Switch to {network}",
+      "addManuallyTitle": "The switch failed. Add the network to MetaMask by hand:",
+      "switching": "Switching…",
+      "balanceHint": "The balance the app read over RPC. If it disagrees with MetaMask, the wallet's cache is stale."
+    },
+    "create": {
+      "title": "Create a game",
+      "stake": "Stake (ETH)",
+      "stakeHint": "Your opponent puts up the same amount. Use 0 for a game with no stake.",
+      "timeout": "Time per move",
+      "timeoutHint": "Once this runs out, the opponent can claim the pot by forfeit.",
+      "timeoutOption": {
+        "300": "5 minutes",
+        "3600": "1 hour",
+        "86400": "24 hours"
+      },
+      "opponent": "Invite a specific opponent (optional)",
+      "opponentHint": "Leave blank to let anyone join. Enter an address to restrict the game to that player.",
+      "opponentInvalid": "That is not a valid address.",
+      "submit": "Create and escrow the stake",
+      "signing": "Sign in your wallet…",
+      "confirming": "Waiting for confirmation…"
+    },
+    "list": {
+      "title": "Games ({count})",
+      "loading": "Loading…",
+      "empty": "No games match this filter.",
+      "noContract": "No contract on the connected network.",
+      "filter": {
+        "all": "All",
+        "open": "Open",
+        "mine": "Mine"
+      }
+    },
+    "card": {
+      "perPlayer": "per player",
+      "waiting": "Waiting",
+      "yours": "You are in",
+      "invited": "Invite only",
+      "draw": "Draw",
+      "wonBy": "Won by {player}"
+    },
+    "status": {
+      "open": "Open",
+      "active": "In progress",
+      "finished": "Finished",
+      "cancelled": "Cancelled"
+    },
+    "game": {
+      "heading": "Game #{gameId}",
+      "pot": "Pot",
+      "you": "you",
+      "waitingForOpponent": "Waiting for an opponent",
+      "joinDeadline": "Join window closes in",
+      "moveDeadline": "Time left this move",
+      "yourTurn": "Your turn",
+      "theirTurn": "{player} to move",
+      "clockExpired": "The clock has run out",
+      "join": "Join (escrow {stake} ETH)",
+      "claimTimeout": "Claim the pot by forfeit",
+      "cancel": "Cancel and refund",
+      "signing": "Sign in your wallet…",
+      "confirming": "Waiting for confirmation…",
+      "cancelled": "This game was cancelled and the stake was refunded to its creator.",
+      "resultDraw": "A draw. Both stakes were returned.",
+      "resultYouWon": "You won.",
+      "resultWinner": "{player} won.",
+      "resultForfeit": "The player to move ran out the clock, so the game was awarded by forfeit.",
+      "resultWithdrawNote": "The payout is credited inside the contract. Claim it with “Withdraw” in the lobby.",
+      "notFound": "Game #{gameId} does not exist.",
+      "noContract": "No contract on the connected network.",
+      "eventLog": "Event log for this game"
+    },
+    "pending": {
+      "label": "Ready to claim",
+      "withdraw": "Withdraw",
+      "signing": "Sign in your wallet…",
+      "confirming": "Waiting for confirmation…"
+    },
+    "errors": {
+      "UserRejected": "The transaction was rejected in your wallet.",
+      "NoSuchGame": "That game does not exist.",
+      "WrongStatus": "The game moved on. Reload the page.",
+      "TimeoutOutOfRange": "Time per move must be between 1 minute and 7 days.",
+      "StakeTooLarge": "That stake exceeds the maximum.",
+      "CannotPlaySelf": "You cannot play against yourself.",
+      "NotInvited": "This game is reserved for a different address.",
+      "WrongStake": "The stake must match exactly.",
+      "JoinWindowClosed": "The join window has closed.",
+      "DeadlinePassed": "The clock ran out, so this move is no longer allowed.",
+      "DeadlineNotReached": "There is still time on the clock.",
+      "NotYourTurn": "It is not your turn.",
+      "CellOutOfRange": "That cell does not exist.",
+      "CellTaken": "That cell is already taken.",
+      "NotCreator": "Only the creator can cancel, until the join window closes.",
+      "NothingToWithdraw": "You have nothing to withdraw.",
+      "TransferFailed": "The transfer failed. Check that your address can receive ETH.",
+      "NotOwner": "Only the contract owner can do that.",
+      "FeeTooHigh": "That exceeds the maximum fee.",
+      "ZeroAddress": "The zero address is not allowed."
+    },
+    "solo": {
+      "title": "Play the contract",
+      "description": "Practice against an opponent written into the contract. No stakes — you only pay gas.",
+      "explainer": "Your opponent is a procedure written in Solidity. When you move, it computes its reply inside the same transaction. Tic-tac-toe is a solved game, so Hard cannot be beaten: a draw is the best you can do.",
+      "newGame": "New game",
+      "difficulty": "Difficulty",
+      "cpuFirst": "Let the contract open",
+      "level": {
+        "easy": "Easy",
+        "normal": "Normal",
+        "hard": "Hard"
+      },
+      "levelHint": {
+        "easy": "Takes a win if one is offered, otherwise plays at random. It will not defend.",
+        "normal": "Sees wins and immediate losses only. Build a fork — two threats at once — and you can beat it.",
+        "hard": "The full strategy. An exhaustive test proves it never loses."
+      },
+      "start": "Start",
+      "starting": "Creating…",
+      "connectPrompt": "Connect a wallet to start.",
+      "signing": "Sign in your wallet…",
+      "confirming": "Waiting for confirmation…",
+      "yourMark": "You play",
+      "moves": "Moves",
+      "yourTurn": "Your turn",
+      "youWon": "You won.",
+      "cpuWon": "The contract won.",
+      "draw": "A draw.",
+      "drawIsBest": "A draw against Hard is the best result there is. Perfect play on both sides always ends here.",
+      "noContract": "No practice contract is configured for the connected network.",
+      "detailHeading": "Practice game #{gameId}",
+      "player": "Player",
+      "resultLabel": "Result",
+      "inProgressLabel": "In progress",
+      "backToPlay": "Back to the board"
+    },
+    "soloLink": "Play the contract",
+    "history": {
+      "title": "History",
+      "description": "Every game your address took part in, assembled from the contracts' event logs.",
+      "explainer": "This list is not a database. It comes from the events the contracts emitted, narrowed by their indexed topics. Reading needs no signature, so the same page works for any address.",
+      "connectPrompt": "Connect a wallet to see your history.",
+      "loading": "Reading from the chain…",
+      "empty": "No games yet.",
+      "mode": "Mode",
+      "game": "Game",
+      "state": "State",
+      "result": "Result",
+      "stake": "Stake",
+      "startedIn": "Start block",
+      "pvp": "Versus player",
+      "solo": "Versus contract",
+      "free": "none",
+      "won": "Won",
+      "lostTo": "Lost to {player}",
+      "lostToCpu": "Lost to the contract",
+      "draw": "Draw",
+      "forfeit": "forfeit",
+      "inProgress": "In progress",
+      "developer": "For developers",
+      "devWithExplorer": "Each transaction hash links out to the block explorer.",
+      "devNoExplorer": "A local Anvil node has no block explorer, so the transaction hash is shown as-is instead of a link.",
+      "pvpEvents": "TicTacToe event log",
+      "soloEvents": "SoloTicTacToe event log"
+    },
+    "txlog": {
+      "withExplorer": "Events emitted by the contract. Transaction hashes link to {explorer}.",
+      "noExplorer": "Events emitted by the contract. A local chain has no explorer, so hashes are shown as-is.",
+      "loading": "Loading…",
+      "empty": "No events.",
+      "event": "Event",
+      "block": "Block",
+      "details": "Details",
+      "tx": "Transaction"
+    },
+    "chain": {
+      "title": "The blocks that carried this game",
+      "explainer": "Every block names its predecessor by hash. Change one bit of an old block and its hash changes, breaking every link after it. That is what “immutable” actually means.",
+      "footnote": "These hashes were read from the chain itself, not computed by this page.",
+      "loading": "Loading blocks…",
+      "empty": "No events for this game yet.",
+      "block": "Block",
+      "linked": "✓ matches the previous block",
+      "gap": "{count} blocks in between",
+      "txCount": "Transactions in this block: {count}"
+    },
+    "faucet": {
+      "title": "This wallet holds no test ether on this network",
+      "body": "You cannot pay for gas yet. Get some from a faucet — each one asks for something different.",
+      "requires": {
+        "nothing": "no signup",
+        "account": "account",
+        "phone": "phone number",
+        "mainnetBalance": "mainnet balance",
+        "localScript": "run locally"
+      }
+    }
+  },
+  "About": {
+    "title": "How it works",
+    "description": "What this app actually does on the contract side."
+  }
+}

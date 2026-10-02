@@ -1,0 +1,185 @@
+<title>校異源氏物語 witness</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1c1b19;--dim:#6b6862;--line:#e0ddd6;--card:#fff;
+  --ok:#1f7a4d;--ng:#a12d2d;--accent:#7a4f1f;--tag:#f0ece4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161513;--fg:#e9e6e0;--dim:#9a958c;--line:#302e2a;--card:#1e1d1a;
+  --ok:#5fbf8c;--ng:#e08585;--accent:#d4a464;--tag:#2a2825}}
+:root[data-theme="dark"]{--bg:#161513;--fg:#e9e6e0;--dim:#9a958c;--line:#302e2a;--card:#1e1d1a;
+  --ok:#5fbf8c;--ng:#e08585;--accent:#d4a464;--tag:#2a2825}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",Georgia,serif;line-height:1.85;
+  font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:820px;margin:0 auto;padding:48px 20px 96px}
+h1{font-size:1.9rem;margin:0 0 .2em;letter-spacing:.02em;font-weight:600}
+h2{font-size:1.15rem;margin:3em 0 .8em;padding-bottom:.35em;border-bottom:1px solid var(--line);font-weight:600}
+h3{font-size:1rem;margin:2em 0 .5em;color:var(--accent);font-weight:600}
+p{margin:0 0 1em}
+.lede{color:var(--dim);margin:0 0 2.5em;font-size:.95rem}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;word-break:break-all}
+.sm{font-size:.85em;color:var(--dim)}
+.num{text-align:right;font-variant-numeric:tabular-nums;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em}
+a{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:1.2em 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:1.2em 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.stat .k{font-size:.78rem;color:var(--dim);margin-bottom:.3em}
+.stat .v{font-size:1.35rem;font-variant-numeric:tabular-nums;font-weight:600}
+.stat .n{font-size:.78rem;color:var(--dim);margin-top:.2em}
+.tag{display:inline-block;background:var(--tag);color:var(--dim);border-radius:5px;
+  padding:1px 8px;font-size:.75rem;font-family:ui-monospace,monospace;vertical-align:middle}
+.tag.ok{color:var(--ok)}.tag.ng{color:var(--ng)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin:.8em 0}
+th{text-align:left;color:var(--dim);font-weight:600;font-size:.78rem;
+  border-bottom:1px solid var(--line);padding:6px 10px 6px 0}
+td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.scroll{overflow-x:auto}
+ul.plain{list-style:none;padding:0;margin:.6em 0}
+ul.plain li{padding:5px 0;border-bottom:1px solid var(--line)}
+ul.plain li:last-child{border:0}
+.warn{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:1.4em 0;color:var(--dim)}
+.flow{font-family:ui-monospace,monospace;font-size:.8rem;line-height:1.9;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:18px 20px;overflow-x:auto;white-space:pre;color:var(--dim)}
+footer{margin-top:4em;padding-top:1.4em;border-top:1px solid var(--line);
+  color:var(--dim);font-size:.82rem}
+</style>
+<div class="wrap">
+
+<h1>校異源氏物語 — 検証できるカタログ</h1>
+<p class="lede">TEI/XML 54 帖・25,065 行。ライセンスは CC0-1.0。<br>
+このページは<strong>索引サーバを 1 つも使わずに</strong>作られています。
+Ocean のノードも Aquarius も The Graph も呼んでいません。使ったのは JSON-RPC と HTTP GET だけです。</p>
+
+<div class="grid">
+  <div class="stat"><div class="k">本文</div><div class="v">5,871,913</div><div class="n">バイト / 54 ファイル</div></div>
+  <div class="stat"><div class="k">証明できる単位</div><div class="v">1 行</div><div class="n">645 バイトで渡せる</div></div>
+  <div class="stat"><div class="k">チェーン上の記録</div><div class="v">4 件</div><div class="n">誰も消せない</div></div>
+  <div class="stat"><div class="k">独立した第三者</div><div class="v" style="color:var(--ng)">0 人</div><div class="n">ここが最大の穴</div></div>
+</div>
+
+<h2>3 つの経路が同じものを指しています</h2>
+<p>この資料は 3 か所に記録があります。どこから辿っても、同じ本文に行き着きます。</p>
+
+<div class="flow">     チェーン上の記録              Ocean の目録               本文の置き場所
+   CorpusAnchor              data NFT                   IPFS
+   0x8197bd3d…cfcab9     0x46611965…3D1a52      bafybeihheff…
+          │                        │                          │
+     root 2 本                 DDO 2,198 バイト              54 ファイル
+     行き先 2 通り              （平文。復号が要らない）        5,871,913 バイト
+          │                        │                          │
+          └────────────┬───────────┘                          │
+                       ▼                                      │
+              同じ root・同じ CID ──────────────────────────────┘
+                       │
+                取り出して計算し直すと、同じ root になる</div>
+
+<h3>突き合わせた結果</h3>
+<ul class="plain">
+<li><span class="tag ok">ok</span> DDO の chapterRoot が 01-digest と同じ</li>
+<li><span class="tag ok">ok</span> DDO の itemRoot が 01-digest と同じ</li>
+<li><span class="tag ok">ok</span> DDO の CID が 08-ipfs と同じ</li>
+<li><span class="tag ok">ok</span> DDO が CorpusAnchor を指している</li>
+<li><span class="tag ok">ok</span> チェーンの記録に同じ root がある</li>
+<li><span class="tag ok">ok</span> チェーンの記録が ipfs:// を指している</li>
+<li><span class="tag ok">ok</span> 公開ゲートウェイから本文が引ける</li>
+</ul>
+
+<h2>本文</h2>
+<p>内容そのものが住所になっている形（CID）で置いてあります。誰がどこで配っていても、同じ住所で引けます。</p>
+<div class="card">
+<p class="mono">ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype</p>
+<p class="sm">公開ゲートウェイから実際に取り出し、こちらで計算し直して一致を確かめたもの:</p>
+<ul class="plain">
+<li><span class="mono">ipfs.io</span>
+  <span class="tag ok">取れて CID も一致</span> <span class="sm">586ms</span></li>
+<li><span class="mono">ipfs.filebase.io</span>
+  <span class="tag ok">取れて CID も一致</span> <span class="sm">1293ms</span></li>
+<li><span class="mono">dweb.link</span>
+  <span class="tag ok">取れて CID も一致</span> <span class="sm">1170ms</span></li>
+</ul>
+</div>
+<p class="warn">IPFS に載っていることは「消えない」を意味しません。CID は内容が同じかを保証するだけで、
+持ち続ける人がいなければ取れなくなります。いまは Filebase の無料枠に乗っています。</p>
+
+<h2>版の固定</h2>
+<p>25,065 行を 1 個の値にまとめた root を、チェーンに刻んであります。
+本文が 1 文字でも変われば、この値は完全に別物になります。</p>
+<div class="card">
+<p class="sm">54 帖の root</p><p class="mono">0x0284bc76623585beebcf9d6265850ffb3b47f4647dc735750d5af5abd3e11729</p>
+<p class="sm" style="margin-top:1em">25,065 行の root</p><p class="mono">0xc5e4853700f7fd421c9fdebe2786b16b892695dfd0a317968a112d9aaab62a0e</p>
+<p class="sm" style="margin-top:1em">方式 rfc6962-sha256/uri-nul-seg-inner-xml　素材 <span class="mono">6328fa3b60bd2202310071b95ac45b7f4e10b0d2</span></p>
+</div>
+<div class="scroll"><table>
+<tr><th>対象</th><th>行き先</th><th>指している場所</th><th>ブロック</th><th></th></tr>
+<tr><td>54 帖</td><td><span class="tag">GitHub</span></td><td class="mono sm">https://github.com/kouigenjimonogatari/kouigenjimonogatari.github.io/tree/6328fa3b60bd2202310071b95ac45b7f4e10b0d2</td>
+    <td class="num">11,568,902</td><td><a href="https://sepolia.etherscan.io/tx/0xc4e16fed18f9ce1c0baad9ad202b5f823f163d963c0f4557956530f6dff4b282">見る</a></td></tr>
+<tr><td>25,065 行</td><td><span class="tag">GitHub</span></td><td class="mono sm">https://github.com/kouigenjimonogatari/kouigenjimonogatari.github.io/tree/6328fa3b60bd2202310071b95ac45b7f4e10b0d2</td>
+    <td class="num">11,568,903</td><td><a href="https://sepolia.etherscan.io/tx/0x2813ac06bddbce2de1c836127c76346c3e2bde8df6b8eb16075701998ca24194">見る</a></td></tr>
+<tr><td>54 帖</td><td><span class="tag ok">IPFS</span></td><td class="mono sm">ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype</td>
+    <td class="num">11,569,036</td><td><a href="https://sepolia.etherscan.io/tx/0x167d478ba5e42a705d4fff64b17ecb8752e3e285b1612f2cbdced99a3c12c481">見る</a></td></tr>
+<tr><td>25,065 行</td><td><span class="tag ok">IPFS</span></td><td class="mono sm">ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype</td>
+    <td class="num">11,569,037</td><td><a href="https://sepolia.etherscan.io/tx/0x76432e21855db4fee0893badaffa5a30d694be3a98e10e756d72eef68084ce5c">見る</a></td></tr>
+</table></div>
+<p class="sm">同じ root に記録が 2 つ並んでいます。<strong>上書きではありません。</strong>
+記録を保存する変数を 1 つも持たない造りなので、上書きという操作が存在しません。
+「本文はこの両方の場所にあった」という事実が 2 つ残っています。</p>
+<p class="sm">コントラクトのソースは <a href="https://repo.sourcify.dev/11155111/0x8197bd3d263b9dcf68df1e2629459f01e0cfcab9">Sourcify で検証済み</a>です
+（<code>exact_match</code>）。チェーン上のコードが公開されているソースから出たものだと、第三者が確かめられます。</p>
+
+<h2>目録（Ocean）</h2>
+<p>この資料には Ocean の目録が付いています。ただし<strong>読むのに券は要りません</strong>。
+CC0 の本文に関所を作らないよう、無料かつ暗号化なしで出してあります。</p>
+<div class="card">
+<ul class="plain">
+<li>目録の名前　<span class="mono">校異源氏物語 TEI</span>（<a href="https://sepolia.etherscan.io/address/0x46611965e6E49C424160B30B8b60BE5C383D1a52">0x46611965…3D1a52</a>）</li>
+<li>公開者の役　<span class="mono">0xa787b128…46a3aa</span>　<span class="sm">メタデータを書き換える権利を持つ人</span></li>
+<li>引ける名前　<span class="mono">did:op:583a6aeb9a39ccc47f972c1d5304b7eb60744b3af9e8d7c6a74e31eabe655a50</span></li>
+<li>メタデータ　2,198 バイト、<span class="tag ok">暗号化なし</span>　<span class="sm">チェーン上に平文。読む側にサーバが要らない</span></li>
+<li>利用の記録　いまのところ 0 件　<span class="sm">注文されるとチェーンに残る</span></li>
+</ul>
+</div>
+<p class="sm">Ocean は「利用 1 回分の券」という仕組みを持っていますが、券は誰の手元にも残りません。
+注文の瞬間に発行され、記録され、同じ取引の中で焼かれます。
+数えているのは所有ではなく<strong>利用の回数</strong>です。</p>
+<p class="warn">この目録は Ocean Market には出てきません。
+Ocean の索引サーバ（<span class="mono">api.nodes.oceanprotocol.com</span>）が停止しているためです。
+このページが索引サーバを使わずに作られているのは、それが理由です。</p>
+
+<h2>正直な留保</h2>
+<ul class="plain">
+<li>独立した第三者はまだ 0 人。公開者ひとりが刻んだだけでは git tag -s を超えない</li>
+<li>利用の記録は自分で試した分。第三者の利用ではない</li>
+<li>IPFS に載っていることは「消えない」を意味しない。Filebase がやめれば取れなくなる</li>
+<li>Ocean Market には出てこない (索引サーバ api.nodes.oceanprotocol.com が 503)</li>
+</ul>
+<p class="sm">とくに 1 つめが重要です。公開者が自分で自分の版を刻むだけなら、チェーンは要りません
+（<code>git tag -s</code> で足ります）。この仕組みが意味を持つのは、
+<strong>公開者以外の誰かが独立に同じ root を刻んだとき</strong>です。いまはまだ 0 人です。</p>
+
+<h2>チェーンに送ったもの</h2>
+<div class="scroll"><table>
+<tr><th>したこと</th><th>ガス</th><th>取引</th></tr>
+<tr><td>CorpusAnchor を配置</td>
+  <td class="num">452,201</td><td><a href="https://sepolia.etherscan.io/tx/0xa04c17698feec3a53638b2cdfbfd711935e9355626f7481a1f631c0f280d5db6">0xa04c1769…0d5db6</a></td></tr>
+<tr><td>54 帖 の root を刻む</td>
+  <td class="num">32,270</td><td><a href="https://sepolia.etherscan.io/tx/0xc4e16fed18f9ce1c0baad9ad202b5f823f163d963c0f4557956530f6dff4b282">0xc4e16fed…f4b282</a></td></tr>
+<tr><td>25,065 行 の root を刻む</td>
+  <td class="num">32,360</td><td><a href="https://sepolia.etherscan.io/tx/0x2813ac06bddbce2de1c836127c76346c3e2bde8df6b8eb16075701998ca24194">0x2813ac06…a24194</a></td></tr>
+<tr><td>data NFT + datatoken + Dispenser</td>
+  <td class="num">1,362,568</td><td><a href="https://sepolia.etherscan.io/tx/0xf6ae6f826883ae169c8c1f7caaaf170007ae1d7441be7fd80e1bdbf481ded4a6">0xf6ae6f82…ded4a6</a></td></tr>
+<tr><td>DDO をチェーンに書く</td>
+  <td class="num">254,772</td><td><a href="https://sepolia.etherscan.io/tx/0x00c419e9c8f8c4894c22c4980ce0de25d91cbd76ee0cc853f9c3ee2b6618da2b">0x00c419e9…18da2b</a></td></tr>
+<tr><td><strong>合計</strong></td><td class="num"><strong>2,134,171</strong></td><td></td></tr>
+</table></div>
+<p class="sm">本文そのものはチェーンに載せていません。5,871,913 バイトを載せると約 9,400 万ガスかかり、
+ブロックの上限 3,000 万の 3 倍以上で収まりません。載せてあるのは root 64 バイトと目録だけです。</p>
+
+<footer>
+Sepolia (公開テストネット)（chainId 11155111）／ Satoru Nakamura / 中村 覚<br>
+生成 2026-08-26 06:37:51 UTC　—　
+索引サーバを使わずに <span class="mono">scripts/13-catalog.mjs</span> が組み立てました。
+</footer>
+</div>

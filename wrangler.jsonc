@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "web3-samples",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-20",
+  "compatibility_flags": ["nodejs_compat"],
+  // wrangler の既定 (keep_names: true) は関数名を残すため __name(...) を差し込む。
+  // それが next-themes の <script> にまで入り、ブラウザで「__name is not defined」になって
+  // ダーク表示の切り替えが止まっていた（統合前の minisig-app の本番でも出ていた）。
+  "keep_names": false,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": { "enabled": true },
+  "kv_namespaces": [
+    {
+      "binding": "PROPOSALS",
+      "id": "7b630da97442484dbd10858c8e639d13"
+    }
+  ]
+}

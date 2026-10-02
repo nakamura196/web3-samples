@@ -1,0 +1,279 @@
+{
+  "generatedAt": "2026-08-26T06:37:51.712Z",
+  "builtWithout": [
+    "Ocean Provider",
+    "Ocean Node / Aquarius",
+    "The Graph",
+    "Etherscan API"
+  ],
+  "chain": {
+    "name": "Sepolia (公開テストネット)",
+    "chainId": 11155111,
+    "explorer": "https://sepolia.etherscan.io",
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com"
+  },
+  "corpus": {
+    "title": "校異源氏物語 (TEI/XML)",
+    "license": "CC0-1.0",
+    "author": "Satoru Nakamura / 中村 覚",
+    "chapters": 54,
+    "lines": 25065,
+    "bytes": 5871913,
+    "sourceCommit": "6328fa3b60bd2202310071b95ac45b7f4e10b0d2",
+    "sourceUri": "https://github.com/kouigenjimonogatari/kouigenjimonogatari.github.io/tree/6328fa3b60bd2202310071b95ac45b7f4e10b0d2",
+    "corpusId": "0xbbab25752897ed280e4a8be9eac17b9d3d281a7d93a822345f63e3ed9ddff6fa",
+    "trees": {
+      "chapter": {
+        "spec": "rfc6962-sha256/chapter-file-bytes",
+        "treeSize": 54,
+        "root": "0x0284bc76623585beebcf9d6265850ffb3b47f4647dc735750d5af5abd3e11729",
+        "proofLength": 6
+      },
+      "item": {
+        "spec": "rfc6962-sha256/uri-nul-seg-inner-xml",
+        "treeSize": 25065,
+        "root": "0xc5e4853700f7fd421c9fdebe2786b16b892695dfd0a317968a112d9aaab62a0e",
+        "proofLength": 15
+      }
+    }
+  },
+  "nft": {
+    "address": "0x46611965e6E49C424160B30B8b60BE5C383D1a52",
+    "name": "校異源氏物語 TEI",
+    "symbol": "KOUIGENJI",
+    "totalSupply": 1,
+    "owner": "0xa787b1285d7d0cf5284167ce278774371946a3aa",
+    "codeBytes": 45
+  },
+  "datatoken": {
+    "address": "0x7912E01939812Be315F1f449aE20Ce2515671F5b",
+    "name": "Kouigenji Access",
+    "symbol": "KGACCESS",
+    "totalSupply": "0",
+    "cap": "100"
+  },
+  "ddo": {
+    "flags": "0x00",
+    "encrypted": false,
+    "bytes": 2198,
+    "hash": "0x660475d2f94b3210c2f067129739bcbd035f6f1cd0df07fb0db938f7627ed5ff",
+    "tx": "0x00c419e9c8f8c4894c22c4980ce0de25d91cbd76ee0cc853f9c3ee2b6618da2b",
+    "document": {
+      "@context": [
+        "https://w3id.org/did/v1"
+      ],
+      "id": "did:op:583a6aeb9a39ccc47f972c1d5304b7eb60744b3af9e8d7c6a74e31eabe655a50",
+      "version": "4.1.0",
+      "chainId": 11155111,
+      "nftAddress": "0x46611965e6E49C424160B30B8b60BE5C383D1a52",
+      "metadata": {
+        "created": "2026-08-26T06:11:36.000Z",
+        "updated": "2026-08-26T06:11:36.000Z",
+        "type": "dataset",
+        "name": "校異源氏物語 (TEI/XML)",
+        "description": "池田亀鑑『校異源氏物語』(1942) を底本とする源氏物語の校異データ。\nTEI/XML 54 帖、25,065 行 (<seg>)。\n帖ツリーの root: 0x0284bc76623585beebcf9d6265850ffb3b47f4647dc735750d5af5abd3e11729\n行ツリーの root: 0xc5e4853700f7fd421c9fdebe2786b16b892695dfd0a317968a112d9aaab62a0e\nどちらも RFC 6962 (rfc6962-sha256/chapter-file-bytes)。\n素材の commit: 6328fa3b60bd2202310071b95ac45b7f4e10b0d2\n本文は IPFS にあります: ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype\nroot は CorpusAnchor (0x8197bd3d263b9dcf68df1e2629459f01e0cfcab9) に刻んであります。\n1 行だけの包含証明を 645 バイトで作れます。",
+        "author": "Satoru Nakamura / 中村 覚",
+        "license": "CC0-1.0",
+        "tags": [
+          "tei",
+          "genji",
+          "japanese-classics",
+          "digital-humanities",
+          "merkle",
+          "rfc6962",
+          "ipfs"
+        ],
+        "additionalInformation": {
+          "sourceUri": "https://github.com/kouigenjimonogatari/kouigenjimonogatari.github.io/tree/6328fa3b60bd2202310071b95ac45b7f4e10b0d2",
+          "sourceCommit": "6328fa3b60bd2202310071b95ac45b7f4e10b0d2",
+          "ipfsCid": "bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+          "ipfsUri": "ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+          "merkleSpec": "rfc6962-sha256/chapter-file-bytes",
+          "chapterRoot": "0x0284bc76623585beebcf9d6265850ffb3b47f4647dc735750d5af5abd3e11729",
+          "chapterTreeSize": 54,
+          "itemRoot": "0xc5e4853700f7fd421c9fdebe2786b16b892695dfd0a317968a112d9aaab62a0e",
+          "itemTreeSize": 25065,
+          "corpusAnchor": "0x8197bd3d263b9dcf68df1e2629459f01e0cfcab9",
+          "corpusId": "0xbbab25752897ed280e4a8be9eac17b9d3d281a7d93a822345f63e3ed9ddff6fa"
+        }
+      },
+      "services": [
+        {
+          "id": "genji-tei",
+          "type": "access",
+          "files": "",
+          "datatokenAddress": "0x7912E01939812Be315F1f449aE20Ce2515671F5b",
+          "serviceEndpoint": "ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+          "timeout": 0
+        }
+      ]
+    },
+    "did": "did:op:583a6aeb9a39ccc47f972c1d5304b7eb60744b3af9e8d7c6a74e31eabe655a50"
+  },
+  "anchor": {
+    "contract": "0x8197bd3d263b9dcf68df1e2629459f01e0cfcab9",
+    "verifiedSource": "https://repo.sourcify.dev/11155111/0x8197bd3d263b9dcf68df1e2629459f01e0cfcab9",
+    "observers": 1,
+    "independentWitnesses": 0,
+    "records": [
+      {
+        "root": "0x0284bc76623585beebcf9d6265850ffb3b47f4647dc735750d5af5abd3e11729",
+        "treeSize": 54,
+        "sourceUri": "https://github.com/kouigenjimonogatari/kouigenjimonogatari.github.io/tree/6328fa3b60bd2202310071b95ac45b7f4e10b0d2",
+        "spec": "rfc6962-sha256/chapter-file-bytes",
+        "observer": "0xa787b1285d7d0cf5284167ce278774371946a3aa",
+        "block": 11568902,
+        "tx": "0xc4e16fed18f9ce1c0baad9ad202b5f823f163d963c0f4557956530f6dff4b282"
+      },
+      {
+        "root": "0xc5e4853700f7fd421c9fdebe2786b16b892695dfd0a317968a112d9aaab62a0e",
+        "treeSize": 25065,
+        "sourceUri": "https://github.com/kouigenjimonogatari/kouigenjimonogatari.github.io/tree/6328fa3b60bd2202310071b95ac45b7f4e10b0d2",
+        "spec": "rfc6962-sha256/uri-nul-seg-inner-xml",
+        "observer": "0xa787b1285d7d0cf5284167ce278774371946a3aa",
+        "block": 11568903,
+        "tx": "0x2813ac06bddbce2de1c836127c76346c3e2bde8df6b8eb16075701998ca24194"
+      },
+      {
+        "root": "0x0284bc76623585beebcf9d6265850ffb3b47f4647dc735750d5af5abd3e11729",
+        "treeSize": 54,
+        "sourceUri": "ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+        "spec": "rfc6962-sha256/chapter-file-bytes",
+        "observer": "0xa787b1285d7d0cf5284167ce278774371946a3aa",
+        "block": 11569036,
+        "tx": "0x167d478ba5e42a705d4fff64b17ecb8752e3e285b1612f2cbdced99a3c12c481"
+      },
+      {
+        "root": "0xc5e4853700f7fd421c9fdebe2786b16b892695dfd0a317968a112d9aaab62a0e",
+        "treeSize": 25065,
+        "sourceUri": "ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+        "spec": "rfc6962-sha256/uri-nul-seg-inner-xml",
+        "observer": "0xa787b1285d7d0cf5284167ce278774371946a3aa",
+        "block": 11569037,
+        "tx": "0x76432e21855db4fee0893badaffa5a30d694be3a98e10e756d72eef68084ce5c"
+      }
+    ]
+  },
+  "usage": {
+    "orders": 1,
+    "consumers": 1,
+    "selfControlled": true,
+    "inOneTransaction": {
+      "minted": 1,
+      "orderStarted": 1,
+      "burned": 1
+    },
+    "records": [
+      {
+        "consumer": "0xffa5e5258de73d6356e65b3eaa036392aa06ea0b",
+        "block": 11569237,
+        "tx": "0x1e5141d3d83faeec635a14121711397b806f43661c01ede74705629255c56aaa"
+      }
+    ],
+    "note": "券は誰の手元にも残らない。出す → 記録する → 焼く が 1 つの取引に閉じる"
+  },
+  "ipfs": {
+    "cid": "bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+    "uri": "ipfs://bafybeihheffdysczxwsfu35h4f4vim643owfxwtb33aqhyovq5klbnlype",
+    "files": 54,
+    "carBytes": 5877661,
+    "gateways": [
+      {
+        "gateway": "ipfs.io",
+        "ok": true,
+        "bytes": 77707,
+        "ms": 586
+      },
+      {
+        "gateway": "ipfs.filebase.io",
+        "ok": true,
+        "bytes": 77707,
+        "ms": 1293
+      },
+      {
+        "gateway": "dweb.link",
+        "ok": true,
+        "bytes": 77707,
+        "ms": 1170
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "label": "CorpusAnchor を配置",
+      "tree": null,
+      "txHash": "0xa04c17698feec3a53638b2cdfbfd711935e9355626f7481a1f631c0f280d5db6",
+      "gas": 452201,
+      "feeWei": "908245586405730",
+      "block": 11568901,
+      "group": "anchor"
+    },
+    {
+      "label": "54 帖 の root を刻む",
+      "tree": "chapter",
+      "txHash": "0xc4e16fed18f9ce1c0baad9ad202b5f823f163d963c0f4557956530f6dff4b282",
+      "gas": 32270,
+      "feeWei": "64879444935270",
+      "block": 11568902,
+      "group": "anchor"
+    },
+    {
+      "label": "25,065 行 の root を刻む",
+      "tree": "item",
+      "txHash": "0x2813ac06bddbce2de1c836127c76346c3e2bde8df6b8eb16075701998ca24194",
+      "gas": 32360,
+      "feeWei": "63763566869200",
+      "block": 11568903,
+      "group": "anchor"
+    },
+    {
+      "label": "data NFT + datatoken + Dispenser",
+      "txHash": "0xf6ae6f826883ae169c8c1f7caaaf170007ae1d7441be7fd80e1bdbf481ded4a6",
+      "gas": 1362568,
+      "group": "ocean"
+    },
+    {
+      "label": "DDO をチェーンに書く",
+      "txHash": "0x00c419e9c8f8c4894c22c4980ce0de25d91cbd76ee0cc853f9c3ee2b6618da2b",
+      "gas": 254772,
+      "group": "ocean"
+    }
+  ],
+  "checks": [
+    {
+      "label": "DDO の chapterRoot が 01-digest と同じ",
+      "ok": true
+    },
+    {
+      "label": "DDO の itemRoot が 01-digest と同じ",
+      "ok": true
+    },
+    {
+      "label": "DDO の CID が 08-ipfs と同じ",
+      "ok": true
+    },
+    {
+      "label": "DDO が CorpusAnchor を指している",
+      "ok": true
+    },
+    {
+      "label": "チェーンの記録に同じ root がある",
+      "ok": true
+    },
+    {
+      "label": "チェーンの記録が ipfs:// を指している",
+      "ok": true
+    },
+    {
+      "label": "公開ゲートウェイから本文が引ける",
+      "ok": true
+    }
+  ],
+  "allOk": true,
+  "caveats": [
+    "独立した第三者はまだ 0 人。公開者ひとりが刻んだだけでは git tag -s を超えない",
+    "利用の記録は自分で試した分。第三者の利用ではない",
+    "IPFS に載っていることは「消えない」を意味しない。Filebase がやめれば取れなくなる",
+    "Ocean Market には出てこない (索引サーバ api.nodes.oceanprotocol.com が 503)"
+  ]
+}

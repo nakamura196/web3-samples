@@ -1,0 +1,20 @@
+{
+  "name": "genji-witness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "校異源氏物語の TEI 本文 25,065 行に対して、Merkle ツリーとチェーンで何ができて何ができないかを確かめる試作",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "selftest": "node scripts/00-selftest.mjs",
+    "digest": "node scripts/01-digest.mjs",
+    "anchor": "node scripts/02-anchor.mjs",
+    "prove": "node scripts/03-prove.mjs",
+    "permanence": "node scripts/04-permanence.mjs",
+    "compare": "node scripts/05-compare.mjs",
+    "ocean": "node scripts/06-ocean.mjs",
+    "dev": "./scripts/dev.zsh",
+    "dev:fork": "./scripts/ocean-fork.zsh",
+    "test": "cd contracts && forge test"
+  }
+}

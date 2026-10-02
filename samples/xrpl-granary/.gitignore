@@ -1,0 +1,27 @@
+# env / secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.kdbx
+credentials.json
+service-account*.json
+gha-creds-*.json
+.npmrc
+
+# node / next
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/settings.json

@@ -1,0 +1,1069 @@
+<title>証明が壊れる瞬間</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --bg:#F1F2F4; --surface:#FBFBFC; --surface-2:#E9EBEF;
+  --ink:#15171E; --muted:#5C6270; --faint:#8A909C;
+  --rule:#D8DBE1; --rule-strong:#BFC4CD;
+  --accent:#2E4A9E; --accent-soft:#E3E7F4; --on-accent:#FBFBFC;
+  --ok:#2C6B52; --ok-soft:#DFEDE6;
+  --bad:#A3342B; --bad-soft:#F5E3E0;
+  --grid-void:#E4E6EA;
+  --shadow:0 1px 2px rgba(20,24,40,.06),0 8px 24px -12px rgba(20,24,40,.18);
+  --sat:62%; --lit:50%;
+  --step:clamp(1.05rem,.98rem + .3vw,1.15rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1015; --surface:#161921; --surface-2:#1D212A;
+    --ink:#E5E7EE; --muted:#939AA9; --faint:#6D7484;
+    --rule:#262A33; --rule-strong:#39404C;
+    --accent:#8098EE; --accent-soft:#1C2440; --on-accent:#0E1015;
+    --ok:#5FBF95; --ok-soft:#15271F;
+    --bad:#E0796C; --bad-soft:#2C1815;
+    --grid-void:#1A1E26;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7);
+    --sat:58%; --lit:62%;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1015; --surface:#161921; --surface-2:#1D212A;
+  --ink:#E5E7EE; --muted:#939AA9; --faint:#6D7484;
+  --rule:#262A33; --rule-strong:#39404C;
+  --accent:#8098EE; --accent-soft:#1C2440; --on-accent:#0E1015;
+  --ok:#5FBF95; --ok-soft:#15271F;
+  --bad:#E0796C; --bad-soft:#2C1815;
+  --grid-void:#1A1E26;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7);
+  --sat:58%; --lit:62%;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Zen Kaku Gothic New",-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+  font-size:var(--step); line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"palt" 1;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) 8rem}
+.spine{max-width:38rem}
+h1,h2,h3{font-family:"Zen Old Mincho",serif;font-weight:700;text-wrap:balance;line-height:1.4}
+p{margin:0 0 1.1em}
+a{color:var(--accent)}
+code,.mono,td.num,th.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(3rem,9vw,6.5rem) 0 2.5rem}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem
+}
+h1{font-size:clamp(2.5rem,2rem + 3.4vw,4.4rem);margin:0 0 1.2rem;letter-spacing:.01em}
+.lede{font-size:clamp(1.1rem,1.02rem + .4vw,1.3rem);color:var(--muted);max-width:34rem;margin:0 0 1.6rem}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.78rem;color:var(--faint);border-top:1px solid var(--rule);padding-top:1rem;max-width:38rem
+}
+
+/* ---------- sections ---------- */
+section{padding-top:clamp(3rem,7vw,5rem)}
+.sec-head{display:flex;gap:1.1rem;align-items:baseline;margin-bottom:1.6rem;max-width:38rem}
+.sec-num{
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--accent);
+  border:1px solid var(--rule-strong);border-radius:2px;padding:.05rem .45rem;flex:none;
+  position:relative;top:-.25rem
+}
+h2{font-size:clamp(1.5rem,1.3rem + 1vw,2rem);margin:0}
+h3{font-size:1.06rem;margin:0 0 .6rem}
+.sub{color:var(--muted);font-size:.95rem}
+
+/* ---------- panels ---------- */
+.panel{
+  background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  box-shadow:var(--shadow);padding:clamp(1.1rem,3vw,1.7rem);margin:1.6rem 0
+}
+.panel-head{
+  display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--rule);padding-bottom:.8rem;margin-bottom:1.1rem
+}
+.panel-title{font-family:"Zen Old Mincho",serif;font-weight:700;font-size:1.02rem}
+.controls{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center}
+
+button{
+  font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;font-size:.86rem;
+  background:var(--surface-2);color:var(--ink);border:1px solid var(--rule-strong);
+  border-radius:3px;padding:.42rem .85rem;cursor:pointer;transition:background .15s,border-color .15s
+}
+button:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+button:disabled{opacity:.42;cursor:not-allowed}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+button.primary:hover:not(:disabled){filter:brightness(1.08)}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select{
+  font-family:"IBM Plex Mono",monospace;font-size:.82rem;background:var(--surface-2);
+  color:var(--ink);border:1px solid var(--rule-strong);border-radius:3px;padding:.38rem .5rem
+}
+label.ctl{font-size:.8rem;color:var(--muted);display:flex;gap:.4rem;align-items:center}
+
+/* ---------- canvases ---------- */
+.stage{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem}
+.plate{display:flex;flex-direction:column;gap:.55rem}
+.plate-cap{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint)
+}
+.plate-note{font-size:.82rem;color:var(--muted);line-height:1.65;min-height:3.3em}
+.frame{
+  position:relative;aspect-ratio:1;border:1px solid var(--rule-strong);border-radius:2px;
+  background:var(--grid-void);overflow:hidden
+}
+.frame canvas{width:100%;height:100%;display:block;image-rendering:pixelated}
+.frame.idle canvas{opacity:.12}
+.axis{
+  position:absolute;font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--faint);
+  background:var(--surface);padding:0 .25rem;border-radius:2px;pointer-events:none
+}
+.axis.x{left:.3rem;bottom:.3rem}
+.axis.y{left:.3rem;top:.3rem}
+
+/* ---------- readouts ---------- */
+.readout{
+  font-family:"IBM Plex Mono",monospace;font-size:.8rem;line-height:1.9;
+  background:var(--surface-2);border:1px solid var(--rule);border-radius:3px;
+  padding:.8rem .9rem;margin-top:1.1rem;max-height:16rem;overflow:auto;white-space:pre-wrap;
+  word-break:break-word
+}
+.readout .t{color:var(--faint)}
+.readout .hi{color:var(--accent);font-weight:600}
+.readout .good{color:var(--ok);font-weight:600}
+.readout .bad{color:var(--bad);font-weight:600}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:.3rem 1rem;font-size:.82rem;margin:0}
+.kv dt{font-family:"IBM Plex Mono",monospace;color:var(--faint);white-space:nowrap}
+.kv dd{margin:0;font-family:"IBM Plex Mono",monospace;word-break:break-all}
+
+.verdict{
+  display:inline-flex;align-items:center;gap:.45rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.78rem;font-weight:600;border-radius:2px;padding:.18rem .5rem;border:1px solid
+}
+.verdict.ok{color:var(--ok);background:var(--ok-soft);border-color:var(--ok)}
+.verdict.bad{color:var(--bad);background:var(--bad-soft);border-color:var(--bad)}
+.verdict.wait{color:var(--faint);background:var(--surface-2);border-color:var(--rule-strong)}
+
+table{border-collapse:collapse;width:100%;font-size:.83rem}
+.scroller{overflow-x:auto;margin:1.2rem 0}
+th,td{text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--rule);white-space:nowrap}
+th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:400}
+td.num,th.num{text-align:right}
+tr.mark td{color:var(--accent);font-weight:700}
+
+.note{
+  border-left:2px solid var(--rule-strong);padding:.1rem 0 .1rem 1rem;color:var(--muted);
+  font-size:.92rem;margin:1.4rem 0;max-width:38rem
+}
+.note strong{color:var(--ink)}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+.card{border:1px solid var(--rule);border-radius:3px;padding:1rem;background:var(--surface)}
+.card h3{font-size:.95rem}
+.card p{font-size:.87rem;color:var(--muted);margin:0}
+
+footer{border-top:1px solid var(--rule);margin-top:5rem;padding-top:2rem;color:var(--faint);font-size:.85rem;max-width:38rem}
+footer a{color:var(--muted)}
+
+.steps{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem;padding:0;list-style:none}
+.steps li{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--faint);
+  border:1px solid var(--rule);border-radius:2px;padding:.15rem .5rem;transition:all .2s
+}
+.steps li.on{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.steps li.done{color:var(--ok);border-color:var(--ok)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero spine">
+  <p class="eyebrow">zero-knowledge proof &nbsp;/&nbsp; shor's algorithm</p>
+  <h1>証明が壊れる瞬間</h1>
+  <p class="lede">
+    ゼロ知識証明をこのページの中で組み立て、Shor のアルゴリズムで実際に破ります。
+    動画でも図解でもなく、ブラウザの中で本当に走る計算です。
+  </p>
+  <p class="hero-meta">
+    <span>Schnorr 証明</span><span>離散対数版 Shor</span><span>量子状態ベクトルの直接計算</span>
+  </p>
+</header>
+
+<section id="what">
+  <div class="sec-head"><span class="sec-num">00</span><h2>ふたつの言葉</h2></div>
+  <div class="spine">
+    <p>
+      <strong>ゼロ知識証明</strong>は、「秘密の数 x を知っている」ことを、x を一切渡さずに
+      相手に納得させる手続きです。公開されるのは <code>y = g<sup>x</sup></code> だけ。
+      デジタル署名も、暗号通貨の zk-rollup も、根はこれひとつです。
+    </p>
+    <p>
+      <strong>Shor のアルゴリズム</strong>は、量子計算機が <code>y</code> から <code>x</code> を
+      直接計算してしまう手順です。1994 年に公開されました。
+    </p>
+    <p>
+      並べると何が起きるか。<strong>手続きは無傷のまま、前提だけが崩れます。</strong>
+      証明は相変わらず検証を通り、しかし誰にでも作れるものになる。
+      以下はその過程を、玩具サイズの鍵で最初から最後まで通したものです。
+    </p>
+  </div>
+  <div class="note">
+    <strong>安全性について。</strong>ここで破る鍵は q が 8 ビット前後、つまり数百通りしかありません。
+    量子計算を持ち出さなくても総当たりで解けます。実運用の 256 ビット鍵をこの方式で
+    シミュレートするには 10<sup>155</sup> バイトのメモリが要ります ——
+    観測可能な宇宙の原子数の 10<sup>75</sup> 倍です。実際の鍵には決して届きません。
+  </div>
+</section>
+
+<section id="build">
+  <div class="sec-head"><span class="sec-num">01</span><h2>証明を組む</h2></div>
+  <div class="spine">
+    <p>
+      まず鍵を作ります。秘密の指数 x を引き、<code>y = g<sup>x</sup> mod p</code> を公開する。
+      証明する側は x を持ち、検証する側は y しか見ません。
+    </p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Schnorr 証明</span>
+      <div class="controls">
+        <label class="ctl">群
+          <select id="grp">
+            <option value="0">q = 83</option>
+            <option value="1" selected>q = 229</option>
+            <option value="2">q = 373</option>
+          </select>
+        </label>
+        <button id="btn-key" class="primary">鍵を生成</button>
+        <button id="btn-prove" disabled>証明を作る</button>
+        <button id="btn-verify" disabled>検証する</button>
+        <button id="btn-sim" disabled>秘密なしで作る</button>
+      </div>
+    </div>
+    <dl class="kv">
+      <dt>公開 y</dt><dd id="kv-y">—</dd>
+      <dt>秘密 x</dt><dd id="kv-x">—</dd>
+      <dt>証明 (t, s)</dt><dd id="kv-pf">—</dd>
+      <dt>検証結果</dt><dd id="kv-verdict"><span class="verdict wait">未実行</span></dd>
+    </dl>
+    <div class="readout" id="log-zkp"><span class="t">鍵を生成してください。</span></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h3>完全性</h3><p>正直に作った証明は必ず通る。</p></div>
+    <div class="card"><h3>健全性</h3><p>x を知らない者は通せない。<em>——これが今から壊れます。</em></p></div>
+    <div class="card"><h3>ゼロ知識</h3><p>通った証明から x は漏れない。「秘密なしで作る」を押すと、
+      x を持たずに検証を通る記録が作れます。本物と分布が完全に一致するので、
+      見た人が得る情報はゼロです。</p></div>
+  </div>
+</section>
+
+<section id="classical">
+  <div class="sec-head"><span class="sec-num">02</span><h2>古典計算機で殴る</h2></div>
+  <div class="spine">
+    <p>
+      Shor を出す前に、いまの計算機でどこまで行けるかを見ます。
+      正攻法は総当たりを平方根まで縮める baby-step giant-step。
+      鍵の大きさを倍にすれば、必要な手数も平方根の分だけ増えます。つまり逃げ切れる。
+    </p>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">古典的な離散対数</span>
+      <div class="controls">
+        <button id="btn-bsgs" disabled>baby-step giant-step</button>
+        <button id="btn-rho" disabled>Pollard rho</button>
+        <button id="btn-nonce" disabled>nonce 使い回しを突く</button>
+      </div>
+    </div>
+    <div class="readout" id="log-cls"><span class="t">先に鍵を生成してください。</span></div>
+  </div>
+</section>
+
+<section id="shor">
+  <div class="sec-head"><span class="sec-num">03</span><h2>量子計算機で解く</h2></div>
+  <div class="spine">
+    <p>
+      Shor が見ているのは、2 変数の関数
+      <code>f(a,b) = g<sup>a</sup>·y<sup>b</sup> mod p</code> です。
+      <code>y = g<sup>x</sup></code> なので <code>f</code> は <code>a + x·b</code> だけで決まる。
+      同じ値をとる格子点は直線に並び、<strong>その直線の傾きがそのまま秘密の x</strong> です。
+    </p>
+    <p>
+      左の板がその値の場です。縞が見えるはずですが、縞の間隔から傾きを読むには
+      古典計算機だと平方根の手数がかかる。量子計算機は重ね合わせで全点を同時に評価し、
+      フーリエ変換で傾きだけを取り出します。
+    </p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">離散対数版 Shor</span>
+      <div class="controls">
+        <button id="btn-shor" class="primary" disabled>Shor を走らせる</button>
+        <button id="btn-forge" disabled>復元した鍵で証明を偽造</button>
+      </div>
+    </div>
+    <ul class="steps" id="steps">
+      <li data-s="0">1. 重ね合わせ</li>
+      <li data-s="1">2. f を計算</li>
+      <li data-s="2">3. 第3レジスタを測定</li>
+      <li data-s="3">4. 量子フーリエ変換</li>
+      <li data-s="4">5. 測定</li>
+      <li data-s="5">6. x = d·c⁻¹</li>
+    </ul>
+    <div class="stage">
+      <div class="plate">
+        <span class="plate-cap">f(a,b) の値の場</span>
+        <div class="frame idle" id="fr-a"><canvas id="cv-a"></canvas>
+          <span class="axis y">a</span><span class="axis x">b →</span></div>
+        <p class="plate-note" id="note-a">同じ色 = 同じ値。斜めの縞が、Shor が突く構造そのものです。</p>
+      </div>
+      <div class="plate">
+        <span class="plate-cap">測定後に残る状態</span>
+        <div class="frame idle" id="fr-b"><canvas id="cv-b"></canvas>
+          <span class="axis y">a</span><span class="axis x">b →</span></div>
+        <p class="plate-note" id="note-b">第3レジスタを測ると、縞は一本に潰れます。傾きはまだ x のまま。</p>
+      </div>
+      <div class="plate">
+        <span class="plate-cap">量子フーリエ変換の後</span>
+        <div class="frame idle" id="fr-c"><canvas id="cv-c"></canvas>
+          <span class="axis y">c</span><span class="axis x">d →</span></div>
+        <p class="plate-note" id="note-c">色相は位相、明るさは振幅。直線以外は干渉で消えます。</p>
+      </div>
+    </div>
+    <div class="readout" id="log-shor"><span class="t">先に鍵を生成してください。</span></div>
+  </div>
+
+  <div class="note">
+    <strong>ここが要点です。</strong>3 枚目で光る直線が <code>d = c·x</code>。
+    直線から外れた格子点の確率は、丸め誤差の範囲でゼロになります。
+    「たまたま当たった」のではなく、<strong>正しくない答えを干渉が全部打ち消している</strong>。
+    だから測定 1 回で秘密鍵が出ます。
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="sec-num">04</span><h2>台帳を偽造する</h2></div>
+  <div class="spine">
+    <p>
+      XRP Ledger の署名は secp256k1 か Ed25519、Ethereum は secp256k1。
+      どれもいま壊した「離散対数は難しい」という同じ一行に乗っています。
+    </p>
+    <p>
+      台帳のアドレスは公開鍵のハッシュなので、鍵は初回送金までは隠れています。
+      しかし一度送金すれば、公開鍵は台帳に載り、二度と消えない。
+      攻撃者がすべきことは<strong>待つことだけ</strong>です。
+    </p>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">harvest now, forge later</span>
+      <div class="controls"><button id="btn-ledger" class="primary" disabled>時系列を走らせる</button></div>
+    </div>
+    <div class="readout" id="log-ledger"><span class="t">先に鍵を生成してください。</span></div>
+  </div>
+  <div class="note">
+    偽造された送金は、<strong>台帳の検証規則から見て完全に正当</strong>です。
+    署名は正しく、アドレスも一致し、二重支払いでもない。不正の痕跡が残らないので、
+    あとから無効化する根拠がありません。
+  </div>
+</section>
+
+<section id="scale">
+  <div class="sec-head"><span class="sec-num">05</span><h2>では本番の大きさでは</h2></div>
+  <div class="spine">
+    <p>
+      混同してはいけない数字が 2 つあります。左は<strong>古典計算機でこの模擬をやる</strong>費用。
+      右は<strong>量子計算機で本当に走らせる</strong>費用。前者は永遠に不可能で、後者は
+      ハードウェア次第でいつか可能になります。
+    </p>
+  </div>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>鍵の大きさ</th><th>使われている場所</th><th class="num">古典模擬に要るメモリ</th><th class="num">論理量子ビット</th></tr></thead>
+      <tbody id="tb-scale"></tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">実サイズの Schnorr は、このページの中で本当に動く</span>
+      <div class="controls"><button id="btn-real">2048 ビットで証明する</button></div>
+    </div>
+    <div class="readout" id="log-real"><span class="t">押すと、実運用と同じ大きさの群で鍵を作り、証明を通します。</span></div>
+  </div>
+</section>
+
+<section id="archive">
+  <div class="sec-head"><span class="sec-num">06</span><h2>記録を残す側から見ると</h2></div>
+  <div class="spine">
+    <p>
+      紙の記録が証拠になるのは、来歴・保管の連鎖・第三者の証言という
+      <strong>独立した複数の根拠</strong>が重なるからです。どれかが崩れても全体は残る。
+    </p>
+    <p>
+      電子署名はそうなっていません。「本人が承認した」という主張は、最終的に
+      たった一行の数学的仮定に載っています。そして仮定が崩れるとき、
+      <strong>過去に作られた署名も一緒に崩れます</strong>。切れ目がない。
+      2026 年の署名は 2050 年に検証しても通り、しかしその頃には 2050 年の誰かが
+      同じものを作れる。検証する側から、この 2 つは区別できません。
+    </p>
+    <p>
+      長期保存の営みそのものが、将来の攻撃材料を育てるという構造もあります。
+      改竄検知のために台帳を保存すれば、同時に公開鍵の一覧を保存していることになる。
+    </p>
+    <p>だから手当ては、暗号の中だけでは閉じません。</p>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>耐量子署名に移る</h3><p>NIST FIPS 204 / 205。とくに SLH-DSA はハッシュだけに依存するので Shor が効きません。</p></div>
+    <div class="card"><h3>重ねる</h3><p>従来署名と耐量子署名を両方付ける。移行期はこれが現実的です。</p></div>
+    <div class="card"><h3>時刻を独立に固定する</h3><p>署名が壊れても「壊れる前に存在した」は残せます。</p></div>
+    <div class="card"><h3>証拠をひとつの仮定に賭けない</h3><p>署名、来歴、第三者保管、公開の記録。紙の時代からの標準的な手当てに戻ります。</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    このページの計算はすべてブラウザの中で実行されます。外部への通信はありません。
+    鍵はページを開くたびに新しく生成され、どこにも保存されません。
+  </p>
+  <p>
+    コマンドライン版と実装の詳細は <code>zk-shor</code> リポジトリに。
+    Schnorr (1989) / Fiat–Shamir (1986) / Shor (1994) / Ekerå–Håstad (2017) / Gidney–Ekerå (2021)。
+  </p>
+</footer>
+
+</div>
+
+<script>
+(() => {
+"use strict";
+
+/* ===================== 群のパラメータ =====================
+   小さい群は q^2 の状態ベクトルを持てる大きさに選んである。
+   p はすべて 2^22 未満なので、p 未満どうしの積は 2^44 で
+   IEEE754 の整数精度 (2^53) に収まる。 */
+const GROUPS = [
+  {p:617521,  q:83,  g:381530},
+  {p:1358887, q:229, g:187492},
+  {p:2385709, q:373, g:402203},
+];
+
+/* ===================== 小さい数の演算 ===================== */
+const modpow = (b, e, m) => {
+  let r = 1; b %= m;
+  while (e > 0) { if (e % 2 === 1) r = r * b % m; b = b * b % m; e = Math.floor(e / 2); }
+  return r;
+};
+const modinv = (a, m) => {
+  let [old_r, r] = [((a % m) + m) % m, m], [old_s, s] = [1, 0];
+  while (r !== 0) { const qq = Math.floor(old_r / r);
+    [old_r, r] = [r, old_r - qq * r]; [old_s, s] = [s, old_s - qq * s]; }
+  return ((old_s % m) + m) % m;
+};
+const randBelow = n => {
+  const u = new Uint32Array(1); crypto.getRandomValues(u);
+  return u[0] % n;
+};
+
+/* ===================== ハッシュ (Fiat-Shamir) =====================
+   c = H(p, q, g, y, t, 文脈) mod q
+   y と群パラメータをハッシュに入れるのが要点。t だけを混ぜると
+   証明を別の鍵の証明として使い回せてしまう。 */
+const enc = new TextEncoder();
+async function challenge(G, y, t, ctx = "") {
+  const msg = `zkshor/v1|${G.p}|${G.q}|${G.g}|${y}|${t}|${ctx}`;
+  const buf = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(msg)));
+  let acc = 0;
+  for (const byte of buf) acc = (acc * 256 + byte) % G.q;
+  return acc;
+}
+
+/* ===================== Schnorr ===================== */
+const keygen = G => { const x = 1 + randBelow(G.q - 1); return {x, y: modpow(G.g, x, G.p)}; };
+
+async function prove(G, kp, ctx = "") {
+  const r = 1 + randBelow(G.q - 1);
+  const t = modpow(G.g, r, G.p);
+  const c = await challenge(G, kp.y, t, ctx);
+  return {t, s: (r + c * kp.x) % G.q};
+}
+async function verify(G, y, pf, ctx = "") {
+  const c = await challenge(G, y, pf.t, ctx);
+  return modpow(G.g, pf.s, G.p) === pf.t * modpow(y, c, G.p) % G.p;
+}
+/* 秘密を持たずに、検証を通る記録を作る。手順を逆にするだけ。
+   本物と分布が完全に一致する —— これがゼロ知識性の中身。 */
+function simulate(G, y) {
+  const c = randBelow(G.q), s = randBelow(G.q);
+  const t = modpow(G.g, s, G.p) * modinv(modpow(y, c, G.p), G.p) % G.p;
+  return {t, c, s};
+}
+const verifyTranscript = (G, y, tr) =>
+  modpow(G.g, tr.s, G.p) === tr.t * modpow(y, tr.c, G.p) % G.p;
+
+/* ===================== 古典的な攻撃 ===================== */
+function bsgs(G, y) {
+  const m = Math.ceil(Math.sqrt(G.q)); let ops = 0;
+  const tbl = new Map(); let cur = 1;
+  for (let j = 0; j < m; j++) { if (!tbl.has(cur)) tbl.set(cur, j); cur = cur * G.g % G.p; ops++; }
+  const factor = modinv(modpow(G.g, m, G.p), G.p);
+  cur = y;
+  for (let i = 0; i < m; i++) { ops++;
+    if (tbl.has(cur)) return {x: (i * m + tbl.get(cur)) % G.q, ops};
+    cur = cur * factor % G.p; }
+  return {x: null, ops};
+}
+function pollardRho(G, y) {
+  const {p, q, g} = G;
+  const step = (u, a, b) => u % 3 === 0 ? [u * u % p, 2 * a % q, 2 * b % q]
+    : u % 3 === 1 ? [u * g % p, (a + 1) % q, b] : [u * y % p, a, (b + 1) % q];
+  let [u, a, b] = [1, 0, 0], [U, A, B] = [1, 0, 0], ops = 0;
+  const cap = 40 * Math.ceil(Math.sqrt(q));
+  while (ops < cap) {
+    [u, a, b] = step(u, a, b);
+    [U, A, B] = step(...step(U, A, B));
+    ops += 3;
+    if (u === U) {
+      const db = ((b - B) % q + q) % q;
+      if (db === 0) return {x: null, ops};
+      const x = ((A - a) % q + q) % q * modinv(db, q) % q;
+      return {x: modpow(g, x, p) === y ? x : null, ops};
+    }
+  }
+  return {x: null, ops};
+}
+
+/* ===================== Shor (離散対数版) =====================
+   f(a,b) = g^a · y^b mod p。y = g^x なので f は a + x·b だけで決まる。 */
+function buildTable(G, y) {
+  const {p, q, g} = G;
+  const ga = new Int32Array(q), yb = new Int32Array(q);
+  let v = 1; for (let a = 0; a < q; a++) { ga[a] = v; v = v * g % p; }
+  v = 1;     for (let b = 0; b < q; b++) { yb[b] = v; v = v * y % p; }
+  const tbl = new Int32Array(q * q);
+  for (let a = 0; a < q; a++) for (let b = 0; b < q; b++) tbl[a * q + b] = ga[a] * yb[b] % p;
+  return tbl;
+}
+/* 第3レジスタを測る。状態は f(a,b) = k を満たす格子点だけに潰れる。
+   秘密は一切使っていない —— 表は誰でも作れる公開情報から出来ている。 */
+function collapse(G, tbl) {
+  const q = G.q;
+  const k = tbl[randBelow(q * q)];
+  const aOf = new Int32Array(q).fill(-1);
+  for (let a = 0; a < q; a++) for (let b = 0; b < q; b++)
+    if (tbl[a * q + b] === k) aOf[b] = a;
+  return {k, aOf};
+}
+/* 両レジスタに QFT_q。潰れた状態は q 点しか持たないので、
+   定義式 φ[c,d] = q^-1.5 · Σ_b ω^(c·a_b + d·b) をそのまま回す。 */
+function qft2(q, aOf) {
+  const cos = new Float64Array(q), sin = new Float64Array(q);
+  for (let j = 0; j < q; j++) { const th = 2 * Math.PI * j / q; cos[j] = Math.cos(th); sin[j] = Math.sin(th); }
+  const re = new Float64Array(q * q), im = new Float64Array(q * q);
+  const norm = 1 / Math.pow(q, 1.5);
+  const pb = new Int32Array(q);
+  for (let c = 0; c < q; c++) {
+    for (let b = 0; b < q; b++) pb[b] = (c * aOf[b]) % q;
+    for (let d = 0; d < q; d++) {
+      let sr = 0, si = 0, acc = 0;
+      for (let b = 0; b < q; b++) {
+        let idx = pb[b] + acc; if (idx >= q) idx -= q;
+        sr += cos[idx]; si += sin[idx];
+        acc += d; if (acc >= q) acc -= q;
+      }
+      re[c * q + d] = sr * norm; im[c * q + d] = si * norm;
+    }
+  }
+  return {re, im};
+}
+function sampleAmp(q, re, im) {
+  const n = q * q; let total = 0;
+  const prob = new Float64Array(n);
+  for (let i = 0; i < n; i++) { prob[i] = re[i] * re[i] + im[i] * im[i]; total += prob[i]; }
+  const u = new Uint32Array(1); crypto.getRandomValues(u);
+  let target = (u[0] / 4294967296) * total, acc = 0;
+  for (let i = 0; i < n; i++) { acc += prob[i]; if (acc >= target) return {c: (i / q) | 0, d: i % q, prob}; }
+  return {c: 0, d: 0, prob};
+}
+
+/* ===================== 描画 ===================== */
+function themeColors() {
+  const cs = getComputedStyle(document.documentElement);
+  const grab = n => cs.getPropertyValue(n).trim();
+  return {
+    sat: parseFloat(grab("--sat")) || 60,
+    lit: parseFloat(grab("--lit")) || 52,
+    void: hexToRgb(grab("--grid-void")) || [230, 232, 236],
+    accent: hexToRgb(grab("--accent")) || [46, 74, 158],
+  };
+}
+function hexToRgb(h) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(h); if (!m) return null;
+  const n = parseInt(m[1], 16); return [n >> 16 & 255, n >> 8 & 255, n & 255];
+}
+function hsl(h, s, l) {
+  s /= 100; l /= 100;
+  const k = n => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  return [Math.round(255 * f(0)), Math.round(255 * f(8)), Math.round(255 * f(4))];
+}
+function paint(cv, q, fill) {
+  cv.width = q; cv.height = q;
+  const ctx = cv.getContext("2d");
+  const img = ctx.createImageData(q, q);
+  fill(img.data, q);
+  ctx.putImageData(img, 0, 0);
+}
+function drawValueField(cv, q, tbl) {
+  const T = themeColors();
+  paint(cv, q, (px) => {
+    for (let a = 0; a < q; a++) for (let b = 0; b < q; b++) {
+      const [r, g, bl] = hsl((tbl[a * q + b] * 137.508) % 360, T.sat, T.lit);
+      const o = (a * q + b) * 4; px[o] = r; px[o + 1] = g; px[o + 2] = bl; px[o + 3] = 255;
+    }
+  });
+}
+function drawCollapsed(cv, q, aOf) {
+  const T = themeColors();
+  paint(cv, q, (px) => {
+    for (let i = 0; i < q * q; i++) {
+      const o = i * 4; px[o] = T.void[0]; px[o + 1] = T.void[1]; px[o + 2] = T.void[2]; px[o + 3] = 255;
+    }
+    for (let b = 0; b < q; b++) {
+      const o = (aOf[b] * q + b) * 4;
+      px[o] = T.accent[0]; px[o + 1] = T.accent[1]; px[o + 2] = T.accent[2]; px[o + 3] = 255;
+    }
+  });
+}
+function drawAmplitude(cv, q, re, im) {
+  const T = themeColors();
+  let max = 0;
+  for (let i = 0; i < q * q; i++) { const m = Math.hypot(re[i], im[i]); if (m > max) max = m; }
+  paint(cv, q, (px) => {
+    for (let i = 0; i < q * q; i++) {
+      const mag = Math.hypot(re[i], im[i]) / (max || 1);
+      const o = i * 4;
+      if (mag < 0.05) {
+        px[o] = T.void[0]; px[o + 1] = T.void[1]; px[o + 2] = T.void[2]; px[o + 3] = 255;
+      } else {
+        const phase = (Math.atan2(im[i], re[i]) * 180 / Math.PI + 360) % 360;
+        const [r, g, b] = hsl(phase, T.sat + 10, T.lit * (0.45 + 0.55 * Math.sqrt(mag)));
+        px[o] = r; px[o + 1] = g; px[o + 2] = b; px[o + 3] = 255;
+      }
+    }
+  });
+}
+
+/* ===================== 実運用サイズ (2048 / 256 bit) ===================== */
+const REAL = {p: 17848783812569528651524408952199988767987218892453174954072885382691357790106352695203867697062002077029849213488248747666877752541543164075677685703225584571127166956185000399605481822382729569037412088328709661980082125229710477803093451450961685443007141360854159133070187953966994890519509975987103172301844711438643032923446710282519675043270247294463224506682512319212338209082572735001832222672907160762821634750899684300925100717536285423823424291085149002324932533133304774930264594808974284966670030876903239234287710440175123687262529862355427019525328063256747054580673771122763750435461370279660206922301n, q: 85634479845189029436887688395642958522951820413126358822162892790900772642883n, g: 6527233087368354571504140336962444863172644160018545287710830330867422262251522934105743468895446652688901199936750306956396101889915366763717885929316673622396232224909469779055918573598089954061661891303545362604330118461215528775897762228710575816561858879688751320646211194772580117077764640669700093619490579985922264701493868246810087451446158289438760331426647969786804855579252581457409080230126620977031479760409598810675048464757428912585773269753541133805936125958795531952782486930548500772206792942986305064708257448438824169769181909437624287122352366747885093600616454162901437592974687407190349780267n};
+const modpowB = (b, e, m) => {
+  let r = 1n; b %= m;
+  while (e > 0n) { if (e & 1n) r = r * b % m; b = b * b % m; e >>= 1n; }
+  return r;
+};
+function randBelowB(n) {
+  const bytes = (n.toString(16).length + 1) >> 1;
+  const buf = new Uint8Array(bytes + 8);
+  crypto.getRandomValues(buf);
+  let v = 0n; for (const byte of buf) v = (v << 8n) | BigInt(byte);
+  return v % n;
+}
+async function challengeB(y, t, ctx) {
+  const msg = `zkshor/v1|${REAL.p}|${REAL.q}|${REAL.g}|${y}|${t}|${ctx}`;
+  const buf = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(msg)));
+  let v = 0n; for (const byte of buf) v = (v << 8n) | BigInt(byte);
+  return v % REAL.q;
+}
+
+/* ===================== 画面 ===================== */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>]/g, ch => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[ch]));
+const short = (v, n = 30) => { const s = String(v); return s.length > n ? s.slice(0, n) + "…" : s; };
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const wait = ms => reduced ? Promise.resolve() : new Promise(r => setTimeout(r, ms));
+
+function logTo(id, html, clear = false) {
+  const el = $(id);
+  if (clear) el.innerHTML = "";
+  el.insertAdjacentHTML("beforeend", html + "\n");
+  el.scrollTop = el.scrollHeight;
+}
+const L = {
+  zkp: (h, c) => logTo("log-zkp", h, c),
+  cls: (h, c) => logTo("log-cls", h, c),
+  shor: (h, c) => logTo("log-shor", h, c),
+  ledger: (h, c) => logTo("log-ledger", h, c),
+  real: (h, c) => logTo("log-real", h, c),
+};
+const ok = s => `<span class="good">${esc(s)}</span>`;
+const bad = s => `<span class="bad">${esc(s)}</span>`;
+const hi = s => `<span class="hi">${esc(s)}</span>`;
+const dim = s => `<span class="t">${esc(s)}</span>`;
+
+/* ---- 状態 ---- */
+let G = GROUPS[1], KP = null, PF = null, RECOVERED = null, TBL = null, LAST = null;
+const CTX = "この鍵の持ち主であることを示す / 2026-08-22";
+
+function setVerdict(txt, kind) {
+  $("kv-verdict").innerHTML = `<span class="verdict ${kind}">${esc(txt)}</span>`;
+}
+function enable(ids, on) { ids.forEach(i => { $(i).disabled = !on; }); }
+function resetAll() {
+  KP = PF = RECOVERED = TBL = null;
+  ["kv-y", "kv-x", "kv-pf"].forEach(i => { $(i).textContent = "—"; });
+  setVerdict("未実行", "wait");
+  enable(["btn-prove", "btn-verify", "btn-sim", "btn-bsgs", "btn-rho", "btn-nonce",
+          "btn-shor", "btn-ledger"], false);
+  enable(["btn-forge"], false);
+  ["fr-a", "fr-b", "fr-c"].forEach(i => $(i).classList.add("idle"));
+  document.querySelectorAll("#steps li").forEach(li => li.className = "");
+  L.cls(dim("先に鍵を生成してください。"), true);
+  L.shor(dim("先に鍵を生成してください。"), true);
+  L.ledger(dim("先に鍵を生成してください。"), true);
+}
+
+/* ---- 01 鍵と証明 ---- */
+$("grp").addEventListener("change", e => { G = GROUPS[+e.target.value]; resetAll();
+  L.zkp(dim(`群を切り替えました: q = ${G.q}, p = ${G.p}`), true); });
+
+$("btn-key").addEventListener("click", () => {
+  resetAll();
+  KP = keygen(G);
+  $("kv-y").textContent = KP.y;
+  $("kv-x").textContent = "検証用に伏せています";
+  L.zkp(`${dim("群")}  p = ${hi(G.p)}, q = ${hi(G.q)}, g = ${hi(G.g)}`, true);
+  L.zkp(`${dim("公開")} y = g^x mod p = ${hi(KP.y)}`);
+  L.zkp(dim("秘密 x はページの中だけに置かれ、以降どこにも表示されません。"));
+  L.zkp(dim("最後に Shor が復元した値と突き合わせるときにだけ出します。"));
+  enable(["btn-prove", "btn-sim", "btn-bsgs", "btn-rho", "btn-nonce", "btn-shor", "btn-ledger"], true);
+  L.cls(dim("準備完了。どれかを押してください。"), true);
+  L.shor(dim("準備完了。「Shor を走らせる」を押してください。"), true);
+  L.ledger(dim("準備完了。「時系列を走らせる」を押してください。"), true);
+});
+
+$("btn-prove").addEventListener("click", async () => {
+  PF = await prove(G, KP, CTX);
+  $("kv-pf").textContent = `t = ${PF.t}, s = ${PF.s}`;
+  setVerdict("未検証", "wait");
+  L.zkp(`${dim("証明を作成")} t = g^r = ${hi(PF.t)}, s = r + c·x = ${hi(PF.s)}`);
+  L.zkp(dim("x そのものは証明のどこにも入っていません。"));
+  enable(["btn-verify"], true);
+});
+
+$("btn-verify").addEventListener("click", async () => {
+  const good = await verify(G, KP.y, PF, CTX);
+  setVerdict(good ? "検証を通過" : "不正", good ? "ok" : "bad");
+  L.zkp(`${dim("検証")} g^s == t·y^c ?  ${good ? ok("通過") : bad("不正")}`);
+  const tampered = await verify(G, KP.y, PF, CTX + "!");
+  L.zkp(`${dim("文脈を 1 文字変えて再検証")}  ${tampered ? bad("通過してしまった") : ok("正しく弾かれた")}`);
+  L.zkp(dim("——署名として機能しています。"));
+});
+
+$("btn-sim").addEventListener("click", () => {
+  L.zkp(dim("秘密を持たない立場で、検証を通る記録を 3 本作ります:"));
+  for (let i = 0; i < 3; i++) {
+    const tr = simulate(G, KP.y);
+    L.zkp(`  t = ${String(tr.t).padStart(7)}, c = ${String(tr.c).padStart(3)}, ` +
+          `s = ${String(tr.s).padStart(3)}  →  ${verifyTranscript(G, KP.y, tr) ? ok("通過") : bad("不正")}`);
+  }
+  L.zkp(dim("本物と分布が完全に一致するので、見た人が得る情報はゼロ。"));
+  L.zkp(dim("偽造にならないのは、ここでは c を自分で選んでいるからです。"));
+  L.zkp(dim("本番では c はハッシュが後から決めるので、この手は使えません。"));
+});
+
+/* ---- 02 古典攻撃 ---- */
+$("btn-bsgs").addEventListener("click", () => {
+  const t0 = performance.now(), r = bsgs(G, KP.y), ms = performance.now() - t0;
+  L.cls(`${dim("baby-step giant-step")}  x = ${hi(r.x)}  ` +
+        `${dim(`(${r.ops} 演算 / ${ms.toFixed(1)} ms)`)}  ${r.x === KP.x ? ok("正解") : bad("失敗")}`);
+  L.cls(dim(`手数は √q ≈ ${Math.ceil(Math.sqrt(G.q))} の定数倍。鍵が 256 ビットなら 2^128 演算になります。`));
+});
+$("btn-rho").addEventListener("click", () => {
+  const r = pollardRho(G, KP.y);
+  L.cls(r.x === null
+    ? `${dim("Pollard rho")}  ${bad("縮退しました")} ${dim(`(${r.ops} 演算) —— 確率的な手法なので起きます。もう一度どうぞ`)}`
+    : `${dim("Pollard rho")}  x = ${hi(r.x)}  ${dim(`(${r.ops} 演算, メモリ O(1))`)}  ${r.x === KP.x ? ok("正解") : bad("失敗")}`);
+});
+$("btn-nonce").addEventListener("click", async () => {
+  const r = 1 + randBelow(G.q - 1), t = modpow(G.g, r, G.p);
+  const c1 = 11, c2 = 29;
+  const s1 = (r + c1 * KP.x) % G.q, s2 = (r + c2 * KP.x) % G.q;
+  const x = (((s1 - s2) % G.q + G.q) % G.q) * modinv(((c1 - c2) % G.q + G.q) % G.q, G.q) % G.q;
+  L.cls(dim("同じ乱数 r を 2 回使った記録を 2 本用意します:"));
+  L.cls(`  (t=${t}, c=${c1}, s=${s1}) と (t=${t}, c=${c2}, s=${s2})`);
+  L.cls(`${dim("x = (s₁-s₂)/(c₁-c₂) mod q")} = ${hi(x)}  ${dim("(1 演算)")}  ${x === KP.x ? ok("正解") : bad("失敗")}`);
+  L.cls(dim("PlayStation 3 (2010) と Android 由来の Bitcoin 鍵流出 (2013) はこれです。"));
+  L.cls(dim("この式は、健全性を «証明» するときに使う式とまったく同じものです。"));
+});
+
+/* ---- 03 Shor ---- */
+const stepEls = () => [...document.querySelectorAll("#steps li")];
+function markStep(n) {
+  stepEls().forEach((li, i) => { li.className = i < n ? "done" : i === n ? "on" : ""; });
+}
+
+$("btn-shor").addEventListener("click", async () => {
+  const btn = $("btn-shor"); btn.disabled = true; enable(["btn-forge"], false);
+  const q = G.q;
+  L.shor(`${dim("群")} q = ${hi(q)}, p = ${hi(G.p)}`, true);
+  L.shor(`${dim("状態ベクトル")} ${q} × ${q} = ${hi((q * q).toLocaleString())} 振幅 ` +
+         `${dim(`(${(16 * q * q / 1048576).toFixed(1)} MiB 相当)`)}`);
+  L.shor(`${dim("実機なら約")} ${hi(3 * Math.ceil(Math.log2(q)))} ${dim("論理量子ビット")}`);
+
+  markStep(0);
+  L.shor(dim("1. すべての (a, b) を等しい重みで重ね合わせる"));
+  await wait(420);
+
+  markStep(1);
+  L.shor(dim("2. 第3レジスタに f(a,b) = g^a·y^b mod p を書く"));
+  TBL = buildTable(G, KP.y);
+  drawValueField($("cv-a"), q, TBL);
+  $("fr-a").classList.remove("idle");
+  $("note-a").textContent = "斜めの縞が見えます。同じ色は同じ値。f は a + x·b だけで決まるので、縞の傾きがそのまま x です。";
+  await wait(520);
+
+  markStep(2);
+  const {k, aOf} = collapse(G, TBL);
+  drawCollapsed($("cv-b"), q, aOf);
+  $("fr-b").classList.remove("idle");
+  L.shor(`${dim("3. 第3レジスタを測定 →")} f = ${hi(k)}`);
+  L.shor(dim(`   状態が ${q} 点に潰れました。この直線の傾きが x ですが、まだ読めません。`));
+  $("note-b").textContent = `f = ${k} を満たす ${q} 点だけが残りました。ここまでの計算に秘密は一切使っていません。`;
+  await wait(520);
+
+  markStep(3);
+  L.shor(dim("4. 両レジスタに量子フーリエ変換"));
+  await wait(60);
+  const t0 = performance.now();
+  const {re, im} = qft2(q, aOf);
+  const ms = performance.now() - t0;
+  drawAmplitude($("cv-c"), q, re, im);
+  LAST = {aOf, re, im};
+  $("fr-c").classList.remove("idle");
+  L.shor(dim(`   ${(q * q).toLocaleString()} 個の振幅を計算 (${ms.toFixed(0)} ms)`));
+  await wait(420);
+
+  markStep(4);
+  const {c, d, prob} = sampleAmp(q, re, im);
+  L.shor(`${dim("5. 測定 →")} (c, d) = (${hi(c)}, ${hi(d)})`);
+  await wait(320);
+
+  if (c === 0) {
+    L.shor(bad("   c = 0 は情報を持ちません (確率 1/q)。もう一度押してください。"));
+    markStep(-1); btn.disabled = false; return;
+  }
+
+  markStep(5);
+  const x = d * modinv(c, q) % q;
+  RECOVERED = x;
+  L.shor(`${dim("6. x = d · c⁻¹ mod q =")} ${hi(x)}`);
+  const good = modpow(G.g, x, G.p) === KP.y;
+  L.shor(`${dim("   検証 g^x == y ?")}  ${good ? ok("一致") : bad("不一致")}`);
+  L.shor(`${dim("   伏せていた本物の x =")} ${hi(KP.x)}  ${x === KP.x ? ok("完全に一致") : bad("不一致")}`);
+  $("kv-x").innerHTML = `<span class="bad">${KP.x}</span> — 復元されました`;
+
+  /* 干渉の確認: d = c·x 以外の確率が本当にゼロか */
+  let on = 0;
+  for (let cc = 0; cc < q; cc++) on += prob[cc * q + (cc * x) % q];
+  let total = 0; for (let i = 0; i < q * q; i++) total += prob[i];
+  let maxOff = 0;
+  for (let cc = 0; cc < q; cc++) for (let dd = 0; dd < q; dd++)
+    if (dd !== (cc * x) % q) maxOff = Math.max(maxOff, prob[cc * q + dd]);
+  L.shor("");
+  L.shor(dim("干渉の確認 —— 偶然でないことの証拠"));
+  L.shor(`  ${dim("直線 d = c·x 上の確率合計")}  ${hi((on / total).toFixed(12))}`);
+  L.shor(`  ${dim("直線から外れた最大の確率")}    ${hi(maxOff.toExponential(2))}`);
+  L.shor(dim("  正しくない答えは、すべて干渉で打ち消されています。"));
+  $("note-c").textContent = `直線 d = c·x だけが残りました。傾き ${x} が秘密の指数です。外れた点の確率は ${maxOff.toExponential(1)}。`;
+
+  markStep(6);
+  enable(["btn-forge"], true);
+  btn.disabled = false;
+});
+
+$("btn-forge").addEventListener("click", async () => {
+  const kp = {x: RECOVERED, y: modpow(G.g, RECOVERED, G.p)};
+  const pf = await prove(G, kp, CTX);
+  const good = await verify(G, KP.y, pf, CTX);
+  L.shor("");
+  L.shor(dim("復元した鍵で、本人と同じ文脈の証明を作ります:"));
+  L.shor(`  t = ${hi(pf.t)}, s = ${hi(pf.s)}`);
+  L.shor(`  ${dim("検証結果")}  ${good ? bad("通過してしまう") : ok("弾かれた")}`);
+  L.shor(dim("ゼロ知識性は保たれたまま、«知識» の側だけが消えました。"));
+  L.shor(dim("手続きは無傷で、前提だけが壊れる —— それがこの攻撃の性質です。"));
+  setVerdict("誰でも作れる", "bad");
+});
+
+/* ---- 04 台帳 ---- */
+const addrOf = async y => {
+  const buf = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(String(y))));
+  return "r" + [...buf.slice(0, 8)].map(b => b.toString(16).padStart(2, "0")).join("");
+};
+$("btn-ledger").addEventListener("click", async () => {
+  const btn = $("btn-ledger"); btn.disabled = true;
+  const alice = KP, mallory = keygen(G);
+  const aAddr = await addrOf(alice.y), mAddr = await addrOf(mallory.y);
+  const bal = {[aAddr]: 1000, [mAddr]: 0};
+  const history = [];
+
+  const msg = (from, to, amt, seq) => `${from}|${to}|${amt}|${seq}`;
+  const send = async (kp, from, to, amt, seq) => {
+    const pf = await prove(G, kp, msg(from, to, amt, seq));
+    return {from, to, amt, seq, pubkey: kp.y, pf};
+  };
+  const applyTx = async tx => {
+    if (await addrOf(tx.pubkey) !== tx.from) return [false, "公開鍵とアドレスが一致しない"];
+    if (!await verify(G, tx.pubkey, tx.pf, msg(tx.from, tx.to, tx.amt, tx.seq))) return [false, "署名が不正"];
+    if ((bal[tx.from] || 0) < tx.amt) return [false, "残高不足"];
+    if (history.some(h => h.from === tx.from && h.seq === tx.seq)) return [false, "sequence の再利用"];
+    bal[tx.from] -= tx.amt; bal[tx.to] = (bal[tx.to] || 0) + tx.amt; history.push(tx);
+    return [true, "ok"];
+  };
+
+  L.ledger(`${dim("Alice  ")} ${aAddr}  ${dim("残高 1000")}`, true);
+  L.ledger(`${dim("Mallory")} ${mAddr}  ${dim("残高 0  (攻撃者)")}`);
+  await wait(400);
+
+  L.ledger("");
+  L.ledger(hi("2026年 — Alice が普通に送金する"));
+  const tx1 = await send(alice, aAddr, mAddr, 100, 1);
+  const [r1, w1] = await applyTx(tx1);
+  L.ledger(`  100 を送金: ${r1 ? ok("成立") : bad(w1)}`);
+  L.ledger(`  ${dim("この取引と一緒に、Alice の公開鍵")} ${hi(tx1.pubkey)} ${dim("が台帳に載りました")}`);
+  L.ledger(dim("  以後この値は消えません。それが台帳の «長所» です。"));
+  await wait(600);
+
+  L.ledger("");
+  L.ledger(hi("2026年 — Mallory が Alice になりすまそうとする"));
+  const bad1 = await send(mallory, aAddr, mAddr, 900, 2);
+  const [r2, w2] = await applyTx(bad1);
+  L.ledger(`  結果: ${r2 ? bad("通ってしまった") : ok("拒否 —— " + w2)}`);
+  await wait(600);
+
+  L.ledger("");
+  L.ledger(hi("20XX年 — アーカイブされた台帳から公開鍵を収穫する"));
+  L.ledger(`  ${dim("収穫:")} ${aAddr} → ${hi(history[0].pubkey)}`);
+  L.ledger(dim("  台帳を読むだけ。権限も侵入も要りません。"));
+  await wait(600);
+
+  L.ledger("");
+  L.ledger(hi("20XX年 — 量子計算機で秘密鍵を再構成する"));
+  let rec = null;
+  for (let i = 0; i < 8 && rec === null; i++) {
+    const tbl = TBL || buildTable(G, history[0].pubkey);
+    const {aOf} = collapse(G, tbl);
+    const {re, im} = qft2(G.q, aOf);
+    const {c, d} = sampleAmp(G.q, re, im);
+    if (c === 0) continue;
+    const cand = d * modinv(c, G.q) % G.q;
+    if (modpow(G.g, cand, G.p) === history[0].pubkey) rec = cand;
+  }
+  L.ledger(`  ${dim("復元した Alice の秘密鍵:")} ${hi(rec)}  ${rec === alice.x ? ok("一致") : bad("失敗")}`);
+  await wait(600);
+
+  L.ledger("");
+  L.ledger(hi("20XX年 — 偽の送金を通す"));
+  const forged = await send({x: rec, y: modpow(G.g, rec, G.p)}, aAddr, mAddr, 900, 2);
+  const [r3, w3] = await applyTx(forged);
+  L.ledger(`  結果: ${r3 ? bad("成立してしまった") : ok(w3)}`);
+  L.ledger(`  ${dim("Alice 残高")} ${bal[aAddr]}  ${dim("/ Mallory 残高")} ${bal[mAddr]}`);
+  L.ledger("");
+  L.ledger(dim("この取引は台帳の検証規則から見て «正当» です。署名は正しく、"));
+  L.ledger(dim("アドレスも一致し、二重支払いでもない。痕跡がどこにも残りません。"));
+  btn.disabled = false;
+});
+
+/* ---- 05 本番サイズ ---- */
+const SCALE = [
+  [8,   "このページのデモ", true],
+  [16,  "古典模擬の実用上限", false],
+  [160, "旧 DSA / SHA-1 世代", false],
+  [256, "secp256k1 / Ed25519 / XRPL", true],
+  [384, "NIST P-384", false],
+  [521, "NIST P-521", false],
+];
+function sizeLabel(bits) {
+  const log10 = 2 * bits * Math.log10(2) + Math.log10(16);
+  if (log10 < 3) return `${Math.round(10 ** log10)} バイト`;
+  if (log10 < 6) return `${(10 ** (log10 - 3)).toFixed(1)} KiB`;
+  if (log10 < 9) return `${(10 ** (log10 - 6)).toFixed(1)} MiB`;
+  if (log10 < 12) return `${(10 ** (log10 - 9)).toFixed(1)} GiB`;
+  return `10^${Math.round(log10)} バイト`;
+}
+$("tb-scale").innerHTML = SCALE.map(([bits, use, mark]) => `
+  <tr${mark ? ' class="mark"' : ""}>
+    <td class="num mono">${bits} bit</td><td>${esc(use)}</td>
+    <td class="num mono">${sizeLabel(bits)}</td>
+    <td class="num mono">${3 * bits + 10}</td>
+  </tr>`).join("");
+
+$("btn-real").addEventListener("click", async () => {
+  const btn = $("btn-real"); btn.disabled = true;
+  L.real(dim("実運用と同じ大きさの群を使います (p は 2048 ビット、q は 256 ビット)。"), true);
+  await wait(30);
+  const t0 = performance.now();
+  const x = 1n + randBelowB(REAL.q - 1n);
+  const y = modpowB(REAL.g, x, REAL.p);
+  const tKey = performance.now() - t0;
+  L.real(`${dim("公開 y =")} ${esc(short(y, 56))}`);
+  L.real(`${dim("鍵の生成")} ${hi(tKey.toFixed(0) + " ms")}`);
+
+  const t1 = performance.now();
+  const r = 1n + randBelowB(REAL.q - 1n);
+  const t = modpowB(REAL.g, r, REAL.p);
+  const c = await challengeB(y, t, CTX);
+  const s = (r + c * x) % REAL.q;
+  const tProve = performance.now() - t1;
+
+  const t2 = performance.now();
+  const c2 = await challengeB(y, t, CTX);
+  const lhs = modpowB(REAL.g, s, REAL.p);
+  const rhs = t * modpowB(y, c2, REAL.p) % REAL.p;
+  const tVerify = performance.now() - t2;
+
+  L.real(`${dim("証明の作成")} ${hi(tProve.toFixed(0) + " ms")}  ${dim("／ 検証")} ${hi(tVerify.toFixed(0) + " ms")}`);
+  L.real(`${dim("検証結果")} ${lhs === rhs ? ok("通過") : bad("不正")}`);
+  L.real(`${dim("証明の大きさ")} ${hi(Math.ceil((t.toString(2).length + s.toString(2).length) / 8) + " バイト")}`);
+  L.real("");
+  L.real(dim("この鍵に対して同じ Shor を走らせるには、"));
+  L.real(`${dim("状態ベクトルに")} ${hi(sizeLabel(256))} ${dim("のメモリが要ります。")}`);
+  L.real(dim("観測可能な宇宙の原子数 (10^80) の 10^75 倍です。"));
+  L.real("");
+  L.real(dim("——古典計算機で «試しに破ってみる» ことは永遠にできません。"));
+  L.real(dim("  量子計算機で «本当に破る» ことは、ハードウェア次第でいつか可能になります。"));
+  L.real(dim("  この 2 つを混同しないこと。デモが玩具サイズなのは前者の制約であって、"));
+  L.real(dim("  後者の困難さを意味しません。"));
+  btn.disabled = false;
+});
+
+/* ---- 初期化 ---- */
+resetAll();
+L.zkp(dim("「鍵を生成」から始めてください。"), true);
+
+/* テーマが切り替わったら 3 枚とも描き直す */
+const repaint = () => {
+  if (TBL) drawValueField($("cv-a"), G.q, TBL);
+  if (LAST) {
+    drawCollapsed($("cv-b"), G.q, LAST.aOf);
+    drawAmplitude($("cv-c"), G.q, LAST.re, LAST.im);
+  }
+};
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", repaint);
+new MutationObserver(repaint).observe(document.documentElement,
+  {attributes: true, attributeFilter: ["data-theme"]});
+})();
+</script>

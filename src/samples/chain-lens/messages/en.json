@@ -1,0 +1,210 @@
+{
+  "Common": {
+    "title": "Chain Lens — learn by reading transactions",
+    "description": "A learning tool for reading real blockchain transactions: what is public, what is encrypted, and what was never written. The read-only parts need no wallet and no private key.",
+    "home": "Home",
+    "inspect": "Read a transaction"
+  },
+  "HomePage": {
+    "hero": {
+      "cta": "Read a transaction",
+      "secondary": "Try a sample"
+    },
+    "samples": {
+      "title": "Start by reading these two",
+      "lead": "On 13 August 2026 a IIIF manifest for Saitan hokku-cho (1682), held by the National Diet Library of Japan, was registered in the dataspace portal Clio-X. The final screen (STEP 6, \"Submit\") lists three steps, but only steps 1 and 3 write to the chain. Step 2 is encryption and never touches it. Both transactions are still on the public chain.",
+      "create": {
+        "title": "1. Create Tokens & Pricing",
+        "note": "The screen says: \"The Data NFT representing your asset, the Datatokens defining access to it, and the pricing schema are all created in a single transaction.\" It deployed three contracts and emitted fifteen records."
+      },
+      "metadata": {
+        "title": "3. Publish DDO",
+        "note": "The screen says: \"The encrypted DDO is stored on-chain as part of the Data NFT.\" Only two records, and just one of them carries content — encrypted."
+      },
+      "open": "See the analysis"
+    },
+    "what": {
+      "title": "How this differs from a general explorer",
+      "lead": "For browsing transactions and balances, Etherscan is better. This tool only covers the three things it does not.",
+      "a": {
+        "title": "What if it had gone into storage?",
+        "body": "The same bytes, priced as contract storage. The order-of-magnitude gap is the reason the design looks the way it does."
+      },
+      "b": {
+        "title": "Open the data: URI in place",
+        "body": "You are taught that an NFT points to an external JSON file. Not always. Here it is decoded for you."
+      },
+      "c": {
+        "title": "Plain, encrypted, absent",
+        "body": "What anyone can read, what nobody can, and what was never written. This is the part that matters in practice."
+      }
+    },
+    "safety": {
+      "title": "On safety",
+      "body": "This tool only reads. There is no field for a private key. It never asks you to connect a wallet. It works on the Sepolia testnet only."
+    }
+  },
+  "Header": {
+    "en": "English",
+    "ja": "日本語"
+  },
+  "Footer": {
+    "copyright": "© {year} Satoru Nakamura",
+    "quickLinks": {
+      "title": "This site",
+      "about": "About this tool",
+      "inspect": "Read a transaction"
+    },
+    "resources": {
+      "title": "Reading",
+      "example": "Sample",
+      "book": "The book: Learning blockchain by reading",
+      "metadata": "3. Publish DDO",
+      "create": "1. Create Tokens & Pricing"
+    },
+    "links": {
+      "title": "External links"
+    }
+  },
+  "Example": {
+    "title": "Example Page",
+    "description": "Explore the main features available in this template.",
+    "feature1": {
+      "title": "Internationalization",
+      "description": "Full i18n support with next-intl. Easily add and manage multiple languages."
+    },
+    "feature2": {
+      "title": "Dark Mode",
+      "description": "System-aware dark mode with next-themes. Automatically switches based on user preference."
+    },
+    "feature3": {
+      "title": "Server Side Rendering",
+      "description": "Dynamic content with Next.js SSR. Optimized for SEO and real-time data."
+    },
+    "feature4": {
+      "title": "Responsive Design",
+      "description": "Fully responsive with Tailwind CSS. Beautiful on all devices and screen sizes."
+    }
+  },
+  "Inspect": {
+    "title": "Read a transaction",
+    "description": "Read one transaction recorded on an Ethereum testnet and sort out what stays in plain text, what is encrypted, and what was never written at all.",
+    "safe": {
+      "title": "This page only reads",
+      "noWallet": "No wallet connection required",
+      "noKey": "There is no field for a private key",
+      "testnet": "Sepolia testnet only"
+    },
+    "form": {
+      "label": "Transaction hash",
+      "submit": "Read",
+      "samples": "Transactions used in this book:",
+      "sample": {
+        "metadata": "3. Publish DDO",
+        "create": "1. Create Tokens & Pricing"
+      }
+    },
+    "result": {
+      "summary": "About the transaction itself",
+      "status": "Status",
+      "ok": "Success",
+      "reverted": "Reverted",
+      "from": "From",
+      "to": "To",
+      "block": "Block",
+      "gas": "Gas used",
+      "fee": "Fee",
+      "calldata": "Calldata",
+      "logs": "Logs emitted",
+      "bytes": "bytes",
+      "summaryLead": "Who sent it, where to, and what they paid — the information written on the envelope. It is always recorded, whatever the contents are. The contents appear further down under \"Every event\".",
+      "explorer": "View in a general explorer"
+    },
+    "cf": {
+      "title": "What if it had gone into storage?",
+      "lead": "The largest piece of data here sits in an event log, not in contract storage. Here is what the same bytes would have cost in storage.",
+      "how": "Method",
+      "rate": "Rate",
+      "gas": "Gas",
+      "asLog": "Event log (what actually happened)",
+      "asStorage": "Contract storage",
+      "conclusion": "Writing {bytes} bytes to storage costs about {ratio}x what the log cost.",
+      "source": "Rates: Ethereum Yellow Paper / EIP-2929. SSTORE assumes a zero-to-nonzero write."
+    },
+    "uri": {
+      "title": "Inside tokenURI",
+      "kind": "Form",
+      "decoded": "Decoded",
+      "kinds": {
+        "data-uri": "Data URI (embedded on chain)",
+        "http": "Link to an external server",
+        "ipfs": "Link to IPFS",
+        "empty": "Empty",
+        "other": "Other"
+      }
+    },
+    "inv": {
+      "title": "Sorting what remains",
+      "readable": "1. Plain text, readable by anyone",
+      "encrypted": "2. On chain but unreadable",
+      "absent": "3. Never written to the chain",
+      "none": "None.",
+      "absentNote": "The data itself is not on chain. Decrypting item 2 would reveal the title and file URL, but only the designated server can do that. From the chain alone you cannot tell what this material is."
+    },
+    "logs": {
+      "title": "Every event",
+      "lead": "{contracts} contracts were involved.",
+      "unknown": "(event not in the known list)",
+      "blob": "← {bytes} bytes. Contents unreadable"
+    },
+    "roles": {
+      "publisher": "The account that ran publish — the wallet connected in the portal",
+      "factory": "Ocean's ERC721Factory. A shared contract already on Sepolia that mass-produces NFTs",
+      "dataNft": "The Data NFT created by this publish — the asset itself. Its DID is computed from this address",
+      "datatoken": "The access token created by this publish — a voucher representing the right to use the asset",
+      "dispenser": "The shared dispenser contract. It already existed; this publish only registered free distribution for this token",
+      "nftTemplate": "The NFT implementation template. The new NFT is a 45-byte stand-in that borrows this code",
+      "erc20Template": "The token implementation template, reused the same way",
+      "feeToken": "The reference token used for fee calculation",
+      "marketFeeCollector": "Where market fees would go. Set to zero here"
+    },
+    "actor": {
+      "eoa": "Account with a key (a person)",
+      "contract": "Contract (a program)",
+      "code": "{bytes} bytes of code",
+      "createdHere": "created by this transaction",
+      "unknownEoa": "An account with a key, not in this guide’s table",
+      "unknownContract": "A contract, not in this guide’s table"
+    },
+    "hint": {
+      "from": "Only accounts with a key can send transactions. Contracts cannot send on their own.",
+      "to": "What this transaction called. The first one calls the factory; the third calls the NFT itself — notice that the destination changes.",
+      "block": "The sequence number of the block this landed in. Sepolia advances one every ~12 seconds, and the number fixes the order.",
+      "gas": "Gas measures the work and storage; the price depends on how busy the network was.",
+      "fee": "Gas x price. Registering data alone reduces the publisher’s ETH.",
+      "calldata": "What the portal sent to the chain, including the encrypted DDO.",
+      "logs": "A single transaction can emit any number of records, because contracts call other contracts inside it."
+    },
+    "calldata": {
+      "title": "Inside the calldata",
+      "lead": "The arguments the portal sent to the chain. Anyone can read the bytes, but if they were encrypted before sending, the contents stay closed. Transaction 1 is entirely plain; transaction 3 is mostly an encrypted DDO.",
+      "fn": "Function called",
+      "plain": "Everything sent in this transaction is plain text.",
+      "mixed": "This transaction carries an encrypted blob in its calldata."
+    },
+    "ddo": {
+      "title": "View the DDO (the document describing the asset)",
+      "lead": "The chain holds only an encrypted blob. To see inside, you must ask the decryptor node recorded on chain. This card shows that dependency directly.",
+      "did": "Asset identifier (DID)",
+      "didNote": "Derived mechanically from the NFT address and chain ID. Nobody assigns it.",
+      "nft": "Derived from NFT",
+      "url": "Recorded decryptor",
+      "ok": "The node returned the DDO. This is the node’s decryption of it — not something read from the chain.",
+      "unreachable": "The recorded decryptor cannot be reached. Either the server is down or it does not accept the connection. In this state nobody can tell the asset’s title or licence, even though the on-chain record is intact.",
+      "notIndexed": "The node answered but has not indexed this asset yet. This is normal right after publishing.",
+      "noUrl": "No decryptor is recorded in this transaction. It is recorded in the transaction that wrote the DDO.",
+      "blocked": "The recorded URL points at a private network, so it is not requested (for safety).",
+      "files": "Note: files (the data URLs) are encrypted a second time inside the DDO. Even the node’s decrypted DDO keeps them closed."
+    }
+  }
+}

@@ -1,0 +1,26 @@
+# 算出した値。素材と 01-digest から何度でも作り直せる
+out/
+node_modules/
+
+# env / secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+credentials.json
+service-account*.json
+.npmrc
+
+# foundry
+contracts/cache/
+contracts/out/
+contracts/broadcast/
+
+# editor / OS
+.DS_Store
+.idea/

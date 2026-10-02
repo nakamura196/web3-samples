@@ -1,0 +1,560 @@
+{
+ "title": "不動産STの物件記述 — 運用サイト(層2)からの項目抽出データ",
+ "asOf": "2026-08-28",
+ "license": "CC0",
+ "method": "6運用者の運用サイトを総当たり(ケネディクス16・三井物産デジタル20・三菱UFJ20・いちご64・トーセイ8・りそな1のURLを走査)。HTMLからタグを外し、層1で観測された項目名の語彙を当てて抽出。4項目以上を実体のあるページとした。",
+ "note": "ケネディクスは全16銘柄で物件概要表を持たず、拾えるのは『鑑定評価額』1語のみ。層2の集計では0項目として算入している。",
+ "pages": [
+  {
+   "assetManager": "三井物産デジタル",
+   "id": "ir001",
+   "url": "https://ir.alterna-x.com/ir001/fund_info/property_description",
+   "fieldCount": 8,
+   "fields": [
+    "建築時期",
+    "所在地",
+    "敷地面積",
+    "構造",
+    "物件名称",
+    "用途地域",
+    "稼働率",
+    "賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "三井物産デジタル",
+   "id": "ir002",
+   "url": "https://ir.alterna-x.com/ir002/fund_info/property_description",
+   "fieldCount": 7,
+   "fields": [
+    "客室数",
+    "建築時期",
+    "所在地",
+    "敷地面積",
+    "物件名称",
+    "稼働率",
+    "賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "三井物産デジタル",
+   "id": "ir003",
+   "url": "https://ir.alterna-x.com/ir003/fund_info/property_description",
+   "fieldCount": 9,
+   "fields": [
+    "アクセス",
+    "建築時期",
+    "所在地",
+    "敷地面積",
+    "構造",
+    "物件名称",
+    "竣工",
+    "賃貸可能個数",
+    "賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "三井物産デジタル",
+   "id": "ir004",
+   "url": "https://ir.alterna-x.com/ir004/fund_info/property_description",
+   "fieldCount": 9,
+   "fields": [
+    "アクセス",
+    "建築時期",
+    "所在地",
+    "敷地面積",
+    "構造",
+    "物件名称",
+    "総戸数",
+    "賃貸可能個数",
+    "賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "三井物産デジタル",
+   "id": "ir005",
+   "url": "https://ir.alterna-x.com/ir005/fund_info/property_description",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "テナント数",
+    "延床面積（登記簿）",
+    "建築時期",
+    "所在地",
+    "敷地面積",
+    "物件名称"
+   ]
+  },
+  {
+   "assetManager": "三菱UFJ不動産投資顧問",
+   "id": "001",
+   "url": "https://sto.muream.tr.mufg.jp/001/property/",
+   "fieldCount": 10,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "物件名称",
+    "用途地域",
+    "稼働率",
+    "総賃貸可能戸数",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "三菱UFJ不動産投資顧問",
+   "id": "003",
+   "url": "https://sto.muream.tr.mufg.jp/003/property/",
+   "fieldCount": 9,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "物件名称",
+    "用途",
+    "稼働率（面積ベース）",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_001/001",
+   "url": "https://www.ichigo-sto.com/fund_001/property/001.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_001/002",
+   "url": "https://www.ichigo-sto.com/fund_001/property/002.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_001/003",
+   "url": "https://www.ichigo-sto.com/fund_001/property/003.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能戸数",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_002/001",
+   "url": "https://www.ichigo-sto.com/fund_002/property/001.html",
+   "fieldCount": 9,
+   "fields": [
+    "アクセス",
+    "マスターリース会社",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "最寄駅",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_002/002",
+   "url": "https://www.ichigo-sto.com/fund_002/property/002.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_002/003",
+   "url": "https://www.ichigo-sto.com/fund_002/property/003.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "最寄駅",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_002/004",
+   "url": "https://www.ichigo-sto.com/fund_002/property/004.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "敷地面積",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_002/005",
+   "url": "https://www.ichigo-sto.com/fund_002/property/005.html",
+   "fieldCount": 8,
+   "fields": [
+    "アクセス",
+    "マスターリース会社",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_003/001",
+   "url": "https://www.ichigo-sto.com/fund_003/property/001.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "敷地面積",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_003/002",
+   "url": "https://www.ichigo-sto.com/fund_003/property/002.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_003/003",
+   "url": "https://www.ichigo-sto.com/fund_003/property/003.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_003/004",
+   "url": "https://www.ichigo-sto.com/fund_003/property/004.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_003/005",
+   "url": "https://www.ichigo-sto.com/fund_003/property/005.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_003/006",
+   "url": "https://www.ichigo-sto.com/fund_003/property/006.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/001",
+   "url": "https://www.ichigo-sto.com/fund_004/property/001.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/002",
+   "url": "https://www.ichigo-sto.com/fund_004/property/002.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/003",
+   "url": "https://www.ichigo-sto.com/fund_004/property/003.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/004",
+   "url": "https://www.ichigo-sto.com/fund_004/property/004.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/005",
+   "url": "https://www.ichigo-sto.com/fund_004/property/005.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/006",
+   "url": "https://www.ichigo-sto.com/fund_004/property/006.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_004/007",
+   "url": "https://www.ichigo-sto.com/fund_004/property/007.html",
+   "fieldCount": 6,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/001",
+   "url": "https://www.ichigo-sto.com/fund_005/property/001.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/002",
+   "url": "https://www.ichigo-sto.com/fund_005/property/002.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/003",
+   "url": "https://www.ichigo-sto.com/fund_005/property/003.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/004",
+   "url": "https://www.ichigo-sto.com/fund_005/property/004.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/005",
+   "url": "https://www.ichigo-sto.com/fund_005/property/005.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/006",
+   "url": "https://www.ichigo-sto.com/fund_005/property/006.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "いちご",
+   "id": "fund_005/007",
+   "url": "https://www.ichigo-sto.com/fund_005/property/007.html",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "稼働率",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "トーセイ",
+   "id": "sto-4",
+   "url": "https://sto-4.tosei-asset.co.jp/outline",
+   "fieldCount": 7,
+   "fields": [
+    "アクセス",
+    "住所",
+    "延床面積",
+    "建築時期",
+    "構造",
+    "物件名",
+    "総賃貸可能面積"
+   ]
+  },
+  {
+   "assetManager": "りそな",
+   "id": "fund_001",
+   "url": "https://www.resonabank.co.jp/hojin/service/kigyonenkin/hudosan/sto/fund_001/property.html",
+   "fieldCount": 5,
+   "fields": [
+    "アクセス",
+    "客室数",
+    "所在地",
+    "敷地面積",
+    "構造"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+*.egg-info/
+.DS_Store
+
+# 生成した群のパラメータはキャッシュ。公開情報なのでコミットしても害はないが、
+# 再現性は seed ではなくファイルで担保するので、玩具用だけ残す
+params/real-*.json

@@ -1,0 +1,152 @@
+{
+  "version": "0.1",
+  "asOf": "2026-08-26",
+  "basis": "国内の不動産ST届出書68件(アセットマネージャー7社)の実測から構成。ゼロから設計したものではなく、実務で既に共通している部分を写し、そこに『根拠』『基準時点』の規律を足したもの。",
+  "principle": [
+    "測定値は「値・根拠・基準時点」の3つで1組。どれが欠けても登録できない。",
+    "用途固有の項目は禁じない。ただし上位概念への対応を必ず明示する。",
+    "既存の表記を置き換えない。原文の項目名を残したまま、この語彙へ写像する。"
+  ],
+  "tiers": {
+    "core": "7社中5社以上の社内共通項目に現れる。必須。",
+    "recommended": "3〜4社に現れる。強く推奨。",
+    "extension": "1〜2社。任意。ただし出すなら定義を添える。"
+  },
+  "fields": [
+    {
+      "id": "propertyName", "ja": "物件名称", "en": "Property name",
+      "tier": "core", "observed": 5, "type": "string",
+      "variants": ["物件名称", "物件名"]
+    },
+    {
+      "id": "address", "ja": "所在", "en": "Location",
+      "tier": "core", "observed": 4, "type": "string",
+      "basisRequired": true, "basisOptions": ["住居表示", "登記簿の地番"],
+      "variants": ["所在地", "所在地（住居表示）", "住所", "地番"],
+      "note": "ケネディクスは1つの「所在地」に住居表示と地番を条件付きで入れる(注記あり)。同じ列に2種類の識別子が入りうるため、機械可読化ではもっとも厄介。根拠を分けて持つ。"
+    },
+    {
+      "id": "landArea", "ja": "敷地面積", "en": "Land area",
+      "tier": "core", "observed": 6, "type": "area", "unit": "㎡",
+      "basisRequired": true, "basisOptions": ["登記簿", "実測", "鑑定"],
+      "variants": ["敷地面積", "敷地面積（登記簿）"]
+    },
+    {
+      "id": "grossFloorArea", "ja": "延床面積", "en": "Gross floor area",
+      "tier": "core", "observed": 5, "type": "area", "unit": "㎡",
+      "basisRequired": true, "basisOptions": ["登記簿", "検査済証", "実測"],
+      "variants": ["延床面積", "延床面積（登記簿）", "延床面積（検査済証）"],
+      "note": "ケネディクスは同一書類の中で物件ごとに登記簿と検査済証を書き分けている。根拠を項目名に埋め込む慣行は、ここが最も徹底している。"
+    },
+    {
+      "id": "zoning", "ja": "用途地域", "en": "Zoning",
+      "tier": "core", "observed": 7, "type": "code",
+      "note": "都市計画法第8条第1項第1号に掲げる種類。7社すべてが持つ2項目のうちの1つ。"
+    },
+    {
+      "id": "farBcr", "ja": "容積率・建蔽率", "en": "FAR / building coverage",
+      "tier": "core", "observed": 6, "type": "ratioPair",
+      "variants": ["容積率", "建蔽率", "建ぺい率", "容積率／建蔽率"],
+      "note": "1項目にまとめる社と分ける社がある。値としては別物なので分けて持つ。"
+    },
+    {
+      "id": "structure", "ja": "構造", "en": "Structure",
+      "tier": "core", "observed": 5, "type": "string",
+      "variants": ["構造", "構造・階数", "構造、規模", "階層"],
+      "note": "自由記述のままでは検索も集計もできない。構造種別・階数・屋根を分解することを推奨する。"
+    },
+    {
+      "id": "builtAt", "ja": "建築時期", "en": "Built",
+      "tier": "core", "observed": 6, "type": "date",
+      "granularityRequired": true,
+      "note": "年までの社と日までの社が同じ項目名で並ぶ。どこまで示したかを添える。"
+    },
+    {
+      "id": "tenure", "ja": "所有形態", "en": "Tenure",
+      "tier": "core", "observed": 7, "type": "enum",
+      "note": "7社すべてが持つ2項目のうちの1つ。土地と建物で別に持つ。"
+    },
+    {
+      "id": "assetUse", "ja": "用途", "en": "Use",
+      "tier": "core", "observed": 6, "type": "enum",
+      "variants": ["用途", "アセットタイプ", "アセットタイプ（建物用途）"]
+    },
+    {
+      "id": "appraisalValue", "ja": "鑑定評価額", "en": "Appraisal value",
+      "tier": "core", "observed": 5, "type": "money", "unit": "JPY",
+      "asOfRequired": true,
+      "variants": ["鑑定評価額", "鑑定評価額（価格時点）", "本信託の信託設定日における不動産価額"],
+      "note": "価格時点なしの評価額は使えない。項目名に括弧で埋め込む社と、別項目に分ける社がある。"
+    },
+    {
+      "id": "occupancy", "ja": "稼働率", "en": "Occupancy",
+      "tier": "recommended", "observed": 2, "type": "ratio",
+      "basisRequired": true, "basisOptions": ["面積ベース", "単位数ベース"],
+      "asOfRequired": true,
+      "variants": ["稼働率", "稼働率（面積ベース）"],
+      "note": "同じ語が銘柄ごとに違う計算をしている。分母と、算入した用途(店舗を含むか等)を必ず添える。この項目の根拠欠落が、担保評価を自動化できない直接の原因になる。"
+    },
+    {
+      "id": "revenueUnits", "ja": "収益単位数", "en": "Revenue units",
+      "tier": "recommended", "observed": 0, "type": "count",
+      "subtypeRequired": true,
+      "subtypes": ["戸数", "室数", "区画数", "テナント数"],
+      "variants": ["総賃貸可能戸数", "賃貸可能個数", "客室数", "テナント数", "テナント総数", "総戸数"],
+      "note": "この上位概念はどの社にも存在しない。用途ごとに項目名が入れ替わるのは正当な差異だが、束ねる概念がないため用途をまたいだ集計ができない。本語彙が足す唯一の新規概念。"
+    },
+    {
+      "id": "leasableArea", "ja": "賃貸可能面積", "en": "Leasable area",
+      "tier": "recommended", "observed": 2, "type": "area", "unit": "㎡",
+      "scopeRequired": true,
+      "variants": ["賃貸可能面積", "総賃貸可能面積"],
+      "note": "算入範囲の但し書きが要る。実例:「賃貸可能面積（本物件の屋根を含みません。）」"
+    },
+    {
+      "id": "trustee", "ja": "信託受託者", "en": "Trustee",
+      "tier": "core", "observed": 6, "type": "entity"
+    },
+    {
+      "id": "trustStart", "ja": "信託設定日", "en": "Trust start",
+      "tier": "core", "observed": 5, "type": "date",
+      "variants": ["信託設定日", "不動産管理処分信託設定年月日"]
+    },
+    {
+      "id": "trustEnd", "ja": "信託期間満了日", "en": "Trust maturity",
+      "tier": "core", "observed": 6, "type": "date"
+    },
+    {
+      "id": "surveyor", "ja": "建物状況の調査業者", "en": "Building surveyor",
+      "tier": "recommended", "observed": 4, "type": "entity",
+      "variants": ["調査業者"]
+    },
+    {
+      "id": "surveyedAt", "ja": "調査年月", "en": "Surveyed",
+      "tier": "recommended", "observed": 4, "type": "date",
+      "variants": ["調査年月", "現地調査年月"]
+    },
+    {
+      "id": "repairForecast", "ja": "修繕費の見込み", "en": "Repair forecast",
+      "tier": "recommended", "observed": 3, "type": "moneyByPeriod",
+      "periodsRequired": true,
+      "variants": ["今後1年間に必要とされる修繕費", "今後2〜12年間に必要と想定される修繕費", "緊急", "短期", "中・長期修繕更新費用"],
+      "note": "期間の切り方が2区分(1年 / 2〜12年)と3区分(緊急 / 短期 / 中・長期)に割れる。指す範囲はほぼ重なるので、期間を明示した数値の並びとして持つ。"
+    },
+    {
+      "id": "seismicPml", "ja": "地震PML", "en": "Seismic PML",
+      "tier": "extension", "observed": 2, "type": "ratio",
+      "basisRequired": true,
+      "variants": ["地震PML（地震PML値調査業者）", "地震PML値（地震PML値調査業者）", "PML値"],
+      "note": "調査業者名を添える慣行が定着している。定義(PML1・50年・超過確率10%)まで書く社もある。"
+    },
+    {
+      "id": "noi", "ja": "運営純収益(NOI)", "en": "Net operating income",
+      "tier": "extension", "observed": 1, "type": "money", "unit": "JPY",
+      "note": "ケネディクスのみが常に開示する。収益還元の内訳(NOI・NCF・還元利回り・割引率・最終還元利回り・土地建物割合)を出すのは同社の特徴で、他社の共通項目には入らない。"
+    }
+  ],
+  "notCovered": [
+    "賃料・共益費・敷金 … 賃借人の同意が得られず「非開示」とされることが多い。値をそのまま置くのではなく、秘匿環境で判定だけを返す設計にする。",
+    "賃借人・転借人の名称 … 個人事業主の場合は個人データになりうる。チェーンに置かない。",
+    "鑑定評価書・建物状況調査報告書の本体 … オフチェーンに残し、チェーンからは参照だけを持つ。"
+  ]
+}

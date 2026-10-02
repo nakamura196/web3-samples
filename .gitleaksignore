@@ -1,0 +1,10 @@
+# gitleaks の誤検知（2026-10-01 に 1 件ずつ確認）。
+# Anvil の既定アカウントの鍵（誰でも知っている公開値・ローカル専用）と、テストネットのコントラクトのアドレス。
+contracts/tictactoe/scripts/fund.zsh:generic-api-key:23
+contracts/tictactoe/scripts/seed.zsh:generic-api-key:21
+contracts/tictactoe/scripts/seed.zsh:generic-api-key:22
+contracts/tictactoe/scripts/walkthrough-step0.zsh:generic-api-key:19
+contracts/tictactoe/scripts/dev-up.zsh:generic-api-key:22
+samples/genji-witness/catalog/data.json:generic-api-key:105
+samples/genji-witness/scripts/dev.zsh:generic-api-key:24
+src/samples/chain-lens/constants/roles.ts:generic-api-key:30

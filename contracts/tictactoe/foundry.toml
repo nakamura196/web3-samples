@@ -1,0 +1,41 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["../lib"]
+solc = "0.8.30"
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+# Keeps `forge inspect <contract> storageLayout` working without a rebuild.
+extra_output = ["storageLayout"]
+
+[fmt]
+line_length = 120
+tab_width = 4
+bracket_spacing = false
+int_types = "long"
+
+[profile.default.fuzz]
+runs = 512
+
+[lint]
+# Deadlines here span minutes to days; the few seconds a proposer can shift
+# block.timestamp by cannot change any outcome.
+exclude_lints = ["block-timestamp"]
+
+[rpc_endpoints]
+# Foundry does not expand shell-style ${VAR:-default}; it reads the whole thing
+# as one variable name and fails even when VAR is set. Plain URLs here, and pass
+# --rpc-url explicitly when you want a different endpoint.
+base_sepolia = "https://sepolia.base.org"
+sepolia = "https://ethereum-sepolia-rpc.publicnode.com"
+
+# Etherscan verification is opt-in. Leaving this section active makes forge
+# resolve ETHERSCAN_API_KEY on every verify — and if the variable exists at all,
+# forge switches to the Etherscan verifier even when --verifier sourcify is
+# passed. Sourcify needs no key, so keep this commented out unless you want the
+# Read/Write tabs on Etherscan, in which case uncomment and export the key.
+#
+# [etherscan]
+# sepolia = { key = "${ETHERSCAN_API_KEY}", chain = 11155111 }
+# base_sepolia = { key = "${ETHERSCAN_API_KEY}", chain = 84532 }

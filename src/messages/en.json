@@ -1,0 +1,31 @@
+{
+  "Portal": {
+    "title": "Web3 Samples",
+    "description": "Small practice apps for seeing how blockchains work by touching something that runs. Everything runs on testnets; no real money is involved.",
+    "open": "Open",
+    "source": "Source code",
+    "back": "Web3 Samples",
+    "samples": {
+      "minisig": {
+        "title": "MiniSig",
+        "description": "A multisig wallet built from scratch and running on Base Sepolia, with an API that collects proposals and signatures."
+      },
+      "st-registry": {
+        "title": "Real-estate ST Description Registry",
+        "description": "Two properties at 100% occupancy: one can be pledged, the other is refused by the contract. The difference lies in the description vocabulary."
+      },
+      "chain-lens": {
+        "title": "Chain Lens",
+        "description": "Read real on-chain transactions to see what is public, what is encrypted, and what was never written. No wallet needed."
+      },
+      "tictactoe": {
+        "title": "On-chain Tic-Tac-Toe",
+        "description": "Tic-tac-toe that runs entirely in a smart contract. Both players stake the same amount and the winner takes the pot."
+      }
+    }
+  },
+  "Header": {
+    "en": "English",
+    "ja": "日本語"
+  }
+}

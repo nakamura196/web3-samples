@@ -1,0 +1,272 @@
+{
+  "Common": {
+    "title": "オンチェーン まるばつ",
+    "description": "スマートコントラクトだけで動くまるばつゲーム。両者が同額を賭け、勝者がポットを総取りします。テストネット専用です。",
+    "home": "ホーム"
+  },
+  "HomePage": {
+    "hero": {
+      "cta": "対戦する",
+      "secondary": "仕組みを読む"
+    },
+    "points": {
+      "title": "このアプリの要点",
+      "escrow": {
+        "title": "賭け金はコントラクトが預かる",
+        "body": "参加時に両者が同額を送金し、コントラクトがエスクローします。運営が持ち逃げできる経路はありません。"
+      },
+      "judge": {
+        "title": "勝敗の判定はチェーン上",
+        "body": "盤面も勝利判定もコントラクト内にあります。サーバもデータベースもありません。"
+      },
+      "timeout": {
+        "title": "放置されても資金は戻る",
+        "body": "手番のプレイヤーが持ち時間を使い切ると、相手が不戦勝でポットを受け取れます。資金が固まったままにはなりません。"
+      }
+    }
+  },
+  "Header": {
+    "en": "English",
+    "ja": "日本語",
+    "play": "対戦",
+    "about": "仕組み",
+    "solo": "CPU と対戦",
+    "history": "対戦履歴"
+  },
+  "Footer": {
+    "copyright": "© {year} オンチェーン まるばつ",
+    "quickLinks": {
+      "title": "ページ",
+      "about": "仕組み",
+      "play": "対戦",
+      "solo": "CPU と対戦",
+      "history": "対戦履歴"
+    },
+    "resources": {
+      "title": "ソースコード",
+      "contract": "TicTacToe.sol",
+      "repository": "リポジトリ"
+    },
+    "links": {
+      "title": "使用技術"
+    },
+    "testnetNotice": "テストネット専用です。ここで扱う ETH に金銭的価値はありません。"
+  },
+  "Play": {
+    "title": "対戦ロビー",
+    "description": "ゲームを作るか、公開中のゲームに参加してください。賭け金はコントラクトに預けられ、勝者が引き出します。",
+    "connectPrompt": "ウォレットを接続すると、ゲームの作成と参加ができます。",
+    "wallet": {
+      "connect": "ウォレットを接続",
+      "connecting": "接続中…",
+      "disconnect": "切断",
+      "network": "ネットワーク",
+      "unsupportedNetwork": "非対応のネットワーク",
+      "noWallet": "ブラウザ拡張のウォレットが見つかりません。MetaMask などを導入してください。",
+      "noContract": "このネットワークにはコントラクトが設定されていません。.env.local のアドレスを確認してください。",
+      "wrongNetworkTitle": "ウォレットが別のネットワークに接続されています",
+      "wrongNetworkBody": "このアプリはテストネット専用です。下のボタンを押すと、必要ならウォレットへのネットワーク追加も含めて切り替えます。MetaMask の確認ダイアログが出るので承認してください。",
+      "switchTo": "{network} に切り替える",
+      "addManuallyTitle": "切り替えに失敗しました。MetaMask に手動でネットワークを追加してください。",
+      "switching": "切り替え中…",
+      "balanceHint": "アプリが RPC 経由で読み取った残高です。MetaMask の表示と食い違う場合、ウォレット側のキャッシュが古い可能性があります。"
+    },
+    "create": {
+      "title": "ゲームを作る",
+      "stake": "賭け金 (ETH)",
+      "stakeHint": "相手も同額を預けます。0 にすると賭けなしの対戦になります。",
+      "timeout": "1手あたりの持ち時間",
+      "timeoutHint": "この時間を過ぎると、相手が不戦勝を主張できます。",
+      "timeoutOption": {
+        "300": "5分",
+        "3600": "1時間",
+        "86400": "24時間"
+      },
+      "opponent": "対戦相手を指定 (任意)",
+      "opponentHint": "空欄にすると誰でも参加できます。アドレスを入れるとその人だけが参加できます。",
+      "opponentInvalid": "アドレスの形式が正しくありません。",
+      "submit": "作成して賭け金を預ける",
+      "signing": "ウォレットで署名してください…",
+      "confirming": "取り込み待ち…"
+    },
+    "list": {
+      "title": "ゲーム一覧 ({count})",
+      "loading": "読み込み中…",
+      "empty": "該当するゲームがありません。",
+      "noContract": "接続中のネットワークにコントラクトがありません。",
+      "filter": {
+        "all": "すべて",
+        "open": "募集中",
+        "mine": "自分の"
+      }
+    },
+    "card": {
+      "perPlayer": "1人あたりの賭け金",
+      "waiting": "募集中",
+      "yours": "参加中",
+      "invited": "指名あり",
+      "draw": "引き分け",
+      "wonBy": "{player} の勝ち"
+    },
+    "status": {
+      "open": "募集中",
+      "active": "対戦中",
+      "finished": "終了",
+      "cancelled": "取消"
+    },
+    "game": {
+      "heading": "ゲーム #{gameId}",
+      "pot": "ポット",
+      "you": "あなた",
+      "waitingForOpponent": "対戦相手を待っています",
+      "joinDeadline": "参加受付の締切まで",
+      "moveDeadline": "手番の残り時間",
+      "yourTurn": "あなたの番です",
+      "theirTurn": "{player} の番です",
+      "clockExpired": "持ち時間が切れました",
+      "join": "参加する ({stake} ETH を預ける)",
+      "claimTimeout": "不戦勝を主張する",
+      "cancel": "取り消して払い戻す",
+      "signing": "ウォレットで署名してください…",
+      "confirming": "取り込み待ち…",
+      "cancelled": "このゲームは取り消され、賭け金は作成者に払い戻されました。",
+      "resultDraw": "引き分けです。賭け金は両者に返却されました。",
+      "resultYouWon": "あなたの勝ちです。",
+      "resultWinner": "{player} の勝ちです。",
+      "resultForfeit": "手番のプレイヤーが持ち時間を使い切ったため、不戦勝となりました。",
+      "resultWithdrawNote": "受取額はコントラクトに記帳されています。ロビーの「引き出す」から受け取ってください。",
+      "notFound": "ゲーム #{gameId} は存在しません。",
+      "noContract": "接続中のネットワークにコントラクトがありません。",
+      "eventLog": "このゲームのイベントログ"
+    },
+    "pending": {
+      "label": "受け取れる残高",
+      "withdraw": "引き出す",
+      "signing": "ウォレットで署名してください…",
+      "confirming": "取り込み待ち…"
+    },
+    "errors": {
+      "UserRejected": "ウォレットで取引が拒否されました。",
+      "NoSuchGame": "そのゲームは存在しません。",
+      "WrongStatus": "ゲームの状態が変わっています。画面を再読み込みしてください。",
+      "TimeoutOutOfRange": "持ち時間は1分以上7日以内で指定してください。",
+      "StakeTooLarge": "賭け金が上限を超えています。",
+      "CannotPlaySelf": "自分自身とは対戦できません。",
+      "NotInvited": "このゲームは別のアドレスが指名されています。",
+      "WrongStake": "賭け金の額が一致しません。",
+      "JoinWindowClosed": "参加受付は締め切られました。",
+      "DeadlinePassed": "持ち時間を過ぎているため着手できません。",
+      "DeadlineNotReached": "まだ持ち時間が残っています。",
+      "NotYourTurn": "あなたの手番ではありません。",
+      "CellOutOfRange": "そのマスは存在しません。",
+      "CellTaken": "そのマスは既に埋まっています。",
+      "NotCreator": "作成者だけが取り消せます (受付締切後は誰でも可)。",
+      "NothingToWithdraw": "引き出せる残高がありません。",
+      "TransferFailed": "送金に失敗しました。受取用のアドレスを確認してください。",
+      "NotOwner": "この操作はコントラクトの所有者のみ実行できます。",
+      "FeeTooHigh": "手数料の上限を超えています。",
+      "ZeroAddress": "ゼロアドレスは指定できません。"
+    },
+    "solo": {
+      "title": "CPU と対戦",
+      "description": "コントラクトに実装された相手と対戦します。賭けなし、ガス代だけで遊べます。",
+      "explainer": "対戦相手は Solidity で書かれた手続きです。あなたが着手すると、同じトランザクションの中で CPU が応手を計算して返します。まるばつは解けているゲームなので、Hard に勝つことはできません。最善を尽くして引き分けです。",
+      "newGame": "新しいゲーム",
+      "difficulty": "強さ",
+      "cpuFirst": "CPU に先手を譲る",
+      "level": {
+        "easy": "弱",
+        "normal": "中",
+        "hard": "強"
+      },
+      "levelHint": {
+        "easy": "勝てる手があれば打ちますが、それ以外はランダムです。防御しません。",
+        "normal": "勝ちと詰みだけを見ます。フォーク（二重の狙い）を作れば人間が勝てます。",
+        "hard": "定石を完全実装しています。全探索で「負けないこと」を検証済みです。"
+      },
+      "start": "開始",
+      "starting": "作成中…",
+      "connectPrompt": "ウォレットを接続してください。",
+      "signing": "ウォレットで署名してください…",
+      "confirming": "取り込み待ち…",
+      "yourMark": "あなたの記号",
+      "moves": "手数",
+      "yourTurn": "あなたの番です",
+      "youWon": "あなたの勝ちです。",
+      "cpuWon": "CPU の勝ちです。",
+      "draw": "引き分けです。",
+      "drawIsBest": "Hard 相手の引き分けは最良の結果です。双方が最善を打つと必ずこうなります。",
+      "noContract": "接続中のネットワークに練習用コントラクトが設定されていません。",
+      "detailHeading": "CPU 戦 #{gameId}",
+      "player": "プレイヤー",
+      "resultLabel": "結果",
+      "inProgressLabel": "進行中",
+      "backToPlay": "対戦画面に戻る"
+    },
+    "soloLink": "CPU と対戦",
+    "history": {
+      "title": "対戦履歴",
+      "description": "あなたのアドレスが関わったゲームの一覧です。チェーン上のイベントログから直接組み立てています。",
+      "explainer": "この一覧はデータベースではなく、コントラクトが発行したイベントを indexed トピックで絞り込んで取得したものです。読み取りだけなので署名は不要で、任意のアドレスについて同じことができます。",
+      "connectPrompt": "ウォレットを接続すると、あなたの対戦履歴が表示されます。",
+      "loading": "チェーンから読み込み中…",
+      "empty": "まだ対戦記録がありません。",
+      "mode": "種別",
+      "game": "ゲーム",
+      "state": "状態",
+      "result": "結果",
+      "stake": "賭け金",
+      "startedIn": "開始ブロック",
+      "pvp": "対人戦",
+      "solo": "CPU 戦",
+      "free": "なし",
+      "won": "勝ち",
+      "lostTo": "{player} に負け",
+      "lostToCpu": "CPU に負け",
+      "draw": "引き分け",
+      "forfeit": "不戦勝",
+      "inProgress": "進行中",
+      "developer": "開発者向け",
+      "devWithExplorer": "各イベントの transaction hash からブロックエクスプローラへ飛べます。",
+      "devNoExplorer": "ローカルの anvil にはブロックエクスプローラがないため、リンクの代わりに transaction hash をそのまま表示しています。",
+      "pvpEvents": "TicTacToe のイベントログ",
+      "soloEvents": "SoloTicTacToe のイベントログ"
+    },
+    "txlog": {
+      "withExplorer": "コントラクトが発行したイベントです。transaction hash をクリックすると {explorer} で確認できます。",
+      "noExplorer": "コントラクトが発行したイベントです。ローカルチェーンにはエクスプローラがないため hash をそのまま表示しています。",
+      "loading": "読み込み中…",
+      "empty": "イベントがありません。",
+      "event": "イベント",
+      "block": "ブロック",
+      "details": "内容",
+      "tx": "トランザクション"
+    },
+    "chain": {
+      "title": "このゲームが刻まれたブロック",
+      "explainer": "各ブロックは、直前のブロックのハッシュを parentHash として抱えています。過去のブロックを 1 ビットでも書き換えるとそのハッシュが変わり、以降のリンクがすべて壊れる。これが「改竄できない」の実体です。",
+      "footnote": "ハッシュはこのチェーンから直接読み取ったものです。アプリが計算した値ではありません。",
+      "loading": "ブロックを読み込み中…",
+      "empty": "まだこのゲームのイベントがありません。",
+      "block": "ブロック",
+      "linked": "✓ 直前のブロックと一致",
+      "gap": "間に {count} ブロック",
+      "txCount": "このブロックの総トランザクション数: {count}"
+    },
+    "faucet": {
+      "title": "このネットワークにテスト ETH がありません",
+      "body": "ガス代を払えないので、まず faucet で入手してください。要求される条件が faucet ごとに違います。",
+      "requires": {
+        "nothing": "登録不要",
+        "account": "アカウント登録",
+        "phone": "電話番号",
+        "mainnetBalance": "メインネットに残高",
+        "localScript": "ローカル実行"
+      }
+    }
+  },
+  "About": {
+    "title": "仕組み",
+    "description": "このアプリがコントラクト側で何をしているか。"
+  }
+}
