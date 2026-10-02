@@ -1,0 +1,14 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "redirects": [
+    { "source": "/ogp-:l(ja|en).svg", "destination": "https://web3-samples.na-kamura-1263.workers.dev/assets/tictactoe/ogp-:l.svg", "permanent": true },
+    { "source": "/", "destination": "https://web3-samples.na-kamura-1263.workers.dev/tictactoe", "permanent": true },
+    { "source": "/ja", "destination": "https://web3-samples.na-kamura-1263.workers.dev/tictactoe", "permanent": true },
+    { "source": "/ja/:path*", "destination": "https://web3-samples.na-kamura-1263.workers.dev/tictactoe/:path*", "permanent": true },
+    { "source": "/en", "destination": "https://web3-samples.na-kamura-1263.workers.dev/en/tictactoe", "permanent": true },
+    { "source": "/en/:path*", "destination": "https://web3-samples.na-kamura-1263.workers.dev/en/tictactoe/:path*", "permanent": true },
+    { "source": "/:path*", "destination": "https://web3-samples.na-kamura-1263.workers.dev/tictactoe/:path*", "permanent": true }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  // 旧 URL を残すための転送専用の Worker（web3-samples に統合済み）
+  "name": "st-registry",
+  "main": "index.js",
+  "compatibility_date": "2026-09-01"
+}
