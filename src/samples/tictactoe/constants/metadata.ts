@@ -32,7 +32,7 @@ export const getMetadata = (locale: 'ja' | 'en') => {
       template: `%s | ${title}`,
     },
     description,
-    metadataBase: new URL(SITE_CONFIG.url),
+    metadataBase: new URL(SITE_URL),
     openGraph: {
       title,
       description,
