@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     open-pull-requests-limit: 10
     # minor / patch はまとめて 1 本の PR にする (PR 洪水を防ぐ)
     groups:
@@ -24,7 +24,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     # npm と同じ理由で cooldown を置く。Actions も乗っ取り事例がある
     # (tj-actions/changed-files 2025-03)。
     cooldown:
